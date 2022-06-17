@@ -1,6 +1,10 @@
 .error__code {
   text-align: center;
-  margin: 0;
+  /* margin-top: calc(50vh - 85px); */
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
   padding: 0;
   font-style: normal;
   font-weight: 400;
@@ -8,4 +12,26 @@
   line-height: 169px;
   text-align: center;
   color: #000000;
+  width: 400px;
+  height: 169px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 599px) {
+  .error__code {
+    /* margin-top: calc(50vh - 50px); */
+    width: 300px;
+    height: 97px;
+    font-size: 80px;
+    line-height: 97px;
+  }
+}
+
+@media screen and (min-width: 580px) and (max-width: 879px) {
+  .error__code {
+    /* width: 400px;
+    height: 169px; */
+    /* margin-top: calc(50vh - 85px); */
+    /* font-size: 140px;
+    line-height: 169px; */
+  }
 }

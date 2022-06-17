@@ -1,13 +1,11 @@
-.signin__link {
+.signup__help {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 17px;  
   text-align: center;
-  color: #3456f3;
+  color: #a0a0a0;
   margin: 0;
-  margin-left: 6px;
   padding: 0;
-  text-decoration: none;
 }
