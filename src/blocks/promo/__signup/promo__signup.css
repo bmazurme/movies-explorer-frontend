@@ -1,0 +1,16 @@
+.promo__signup {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  text-decoration: none;
+  color: #FFFFFF;
+}

@@ -1,12 +1,10 @@
+import Logo from "../Logo/Logo";
 function Signin() {
   return(
-    <section className="signin">
+    <section className="sign">
       <div className="container">
-        <a href="/">      
-          <div className="logo signin__logo">
-            </div>
-        </a>
-        <h2 className="signin__title">Рады видеть!</h2>
+        <Logo/>
+        <h2 className="sign__title">Рады видеть!</h2>
         <div className="inbox" >
           <label className="inbox__label">E-mail</label>
           <input
@@ -35,11 +33,11 @@ function Signin() {
         <span className=""></span>
       </div>
 
-      <button className="button button_submit signin__button">Войти</button>
+      <button className="button button_submit">Войти</button>
 
-      <div className="signin__footer">
-        <p className="signin__help">Еще не зарегистрированы?</p>
-        <a className="signin__link" href="/signup">Регистрация</a>
+      <div className="sign__footer">
+        <p className="sign__help">Еще не зарегистрированы?</p>
+        <a className="sign__link" href="/signup">Регистрация</a>
       </div>
 
 

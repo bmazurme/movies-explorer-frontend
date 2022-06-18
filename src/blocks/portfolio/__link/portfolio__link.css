@@ -1,0 +1,27 @@
+.portfolio__link {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+  color: #000000;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.portfolio__link::after {
+  content: "";
+  height: 30px;
+  width: 30px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 12px;
+  right: 0;
+  background-image: url(../../../images/link.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+}

@@ -1,14 +1,21 @@
-import NavTab from "../Main/NavTab/NavTab";
+import Logo from "../Logo/Logo";
+import Navigation from "../Navigation/Navigation";
+import React from "react";
 
 function Header() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  function handlerClick() {
+    setIsOpen(!isOpen);
+  }
+
   return(
-  <>
-    <div className="logo"></div>
-    <NavTab/>
-    <a className="" href="/movies">Фильмы</a>
-    <a className="" href="/saved-movies">Сохранённые фильмы</a>
-    <a className="" href="/profile">Аккаунт</a>
-  </>
+    <section className="header">
+      <Logo/>
+      <Navigation
+        isOpen={isOpen}
+        handlerClick={handlerClick}
+      />
+    </section>
   );
 }
 

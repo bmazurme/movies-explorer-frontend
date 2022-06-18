@@ -1,4 +1,3 @@
-import './App.css';
 import {
   Route,
   Switch,
@@ -9,13 +8,13 @@ import Profile from '../Profile/Profile';
 import Signin from '../Signin/Signin';
 import Signup from '../Signup/Signup';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import AboutProject from '../Main/AboutProject/AboutProject';
+import Main from '../Main/Main';
 
 function App() {
   return (
       <Switch>
         <Route exact path='/'>
-          <AboutProject/>
+          <Main/>
         </Route>
         <Route path='/movies'>
           <Movies/>

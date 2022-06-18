@@ -1,0 +1,11 @@
+.movie-card__title {
+  display: flex;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}

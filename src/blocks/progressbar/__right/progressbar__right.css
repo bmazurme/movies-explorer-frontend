@@ -1,0 +1,25 @@
+.progressbar__right {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  position: relative;
+}
+
+.progressbar__right::after {
+  top: 24px;
+  position: absolute;
+  content: "Front-end";
+  top: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 228px;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #A0A0A0;
+}

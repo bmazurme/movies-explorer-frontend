@@ -1,0 +1,17 @@
+.about-me__tag {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #000000;
+  margin-top: 100px;
+  margin-bottom: 0;
+  margin-left: 70px;
+  margin-right: 70px;
+  padding-bottom: 23px;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+
+  border-bottom: 1px solid #000000;
+}

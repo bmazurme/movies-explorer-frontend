@@ -1,0 +1,20 @@
+.footer__menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .footer__menu {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .footer__menu {
+
+  }
+}

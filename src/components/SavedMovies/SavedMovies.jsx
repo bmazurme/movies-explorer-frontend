@@ -1,11 +1,14 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import SearchForm from "../Movies/SearchForm/SearchForm";
+import MovieCardList from "../Movies/MoviesCardList/MoviesCardList";
 
 function SavedMovies() {
   return(
     <>
     <Header/>
-      <h2>Saved Movies</h2>
+    <SearchForm/>
+    <MovieCardList/>
     <Footer/>
     </>
   );
