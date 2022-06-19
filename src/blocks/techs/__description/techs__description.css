@@ -12,3 +12,19 @@
   padding: 0;
   max-width: 460px;
 }
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .techs__description {
+    font-size: 11px;
+    line-height: 16px;
+    max-width: 292px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .techs__description {
+    font-size: 12px;
+    line-height: 18px;
+    max-width: 460px;
+  }
+}

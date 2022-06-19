@@ -1,18 +1,33 @@
-import cover from '../../../images/cover.jpg';
+import React from 'react';
+import { movieCard } from './movieCard';
 
 function MovieCard() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  function handlerClick() {
+    setIsOpen(!isOpen);
+  }
   return(
     <div className="movie-card">
-      <img src={cover} alt="" 
-        className="movie-card__image"/>
+      <img
+        src={movieCard.cover}
+        alt={movieCard.alt} 
+        className="movie-card__image"
+      />
       <div className="movie-card__box">
         <p className="movie-card__title">
-          33 cлова о дизайне
+          {movieCard.title}
         </p>
-        <button className="button button_like"/>
+        <button
+          className={`button
+            ${isOpen 
+              ? 'button_liked' 
+              : 'button_like'
+            }`
+          }
+          onClick={handlerClick}/>
       </div>      
       <p className="movie-card__detail">
-        1ч42м
+        {movieCard.detail}
       </p>
     </div>
   );

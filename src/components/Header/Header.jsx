@@ -7,7 +7,6 @@ function Header() {
   function handlerClick() {
     setIsOpen(!isOpen);
   }
-
   return(
     <section className="header">
       <Logo/>

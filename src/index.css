@@ -39,13 +39,12 @@
 @import url(./blocks/profile/__links/profile__links.css);
 @import url(./blocks/profile/__link/profile__link.css);
 @import url(./blocks/profile/__link/_red/profile__link_red.css);
-
+/* search */
 @import url(./blocks/search/search.css);
 @import url(./blocks/search-form/search-form.css);
 @import url(./blocks/search-form/__input/search-form__input.css);
 @import url(./blocks/search-form/__button/search-form__button.css);
 @import url(./blocks/search-form/__box/search-form__box.css);
-
 @import url(./blocks/search-form/__form/search-form__form.css);
 /* profile */
 @import url(./blocks/profile-button/profile-button.css);
@@ -56,6 +55,7 @@
 @import url(./blocks/switcher/switcher.css);
 @import url(./blocks/switcher/__label/switcher__label.css);
 @import url(./blocks/switcher/__button/switcher__button.css);
+@import url(./blocks/switcher/__button/_on/switcher__button_on.css);
 /* footer */
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__bottom/footer__bottom.css);
@@ -73,36 +73,36 @@
 /* button */
 @import url(./blocks/button/button.css);
 @import url(./blocks/button/_like/button_like.css);
+@import url(./blocks/button/_dislike/button_dislike.css);
+@import url(./blocks/button/_liked/button_like.css);
 @import url(./blocks/button/_submit/button_submit.css);
-
+/* card-list */
 @import url(./blocks/card-list/card-list.css);
-
+/* field */
 @import url(./blocks/field/field.css);
 @import url(./blocks/field/_border/field_border.css);
 @import url(./blocks/field/__label/field__label.css);
 @import url(./blocks/field/__value/field__value.css);
-
+/* techs */
 @import url(./blocks/techs/techs.css);
 @import url(./blocks/techs/__title/techs__title.css);
 @import url(./blocks/techs/__description/techs__description.css);
 @import url(./blocks/techs/__list/techs__list.css);
 @import url(./blocks/techs/__item/techs.css);
-@import url(./blocks/techs/__tag/techs__tag.css);
-
+/* about-project */
 @import url(./blocks/about-project/about-project.css);
-@import url(./blocks/about-project/__tag/about-project__tag.css);
 @import url(./blocks/about-project/__progressbar/about-project__progressbar.css);
-
+/* block */
 @import url(./blocks/block/block.css);
-
+/* progressbar */
 @import url(./blocks/progressbar/progressbar.css);
 @import url(./blocks/progressbar/__left/progressbar__left.css);
 @import url(./blocks/progressbar/__right/progressbar__right.css);
-
+/* cell */
 @import url(./blocks/cell/cell.css);
 @import url(./blocks/cell/__text/cell__text.css);
 @import url(./blocks/cell/__title/cell__title.css);
-
+/* promo */
 @import url(./blocks/promo/promo.css);
 @import url(./blocks/promo/__header/promo__header.css);
 @import url(./blocks/promo/__tabs/promo__tabs.css);
@@ -112,13 +112,11 @@
 @import url(./blocks/promo/__menu/promo__menu.css);
 @import url(./blocks/promo/__logo/promo__logo.css);
 @import url(./blocks/promo/__icon/promo__icon.css);
-
 @import url(./blocks/promo/__signin/promo__signin.css);
 @import url(./blocks/promo/__signup/promo__signup.css);
-
-
+/* about-me */
 @import url(./blocks/about-me/about-me.css);
-@import url(./blocks/about-me/__tag/about-me__tag.css);
+/* @import url(./blocks/about-me/__tag/about-me__tag.css); */
 @import url(./blocks/about-me/__title/about-me__title.css);
 @import url(./blocks/about-me/__container/about-me__container.css);
 @import url(./blocks/about-me/__major/about-me__major.css);
@@ -126,9 +124,11 @@
 @import url(./blocks/about-me/__photo/about-me__photo.css);
 @import url(./blocks/about-me/__links/about-me__links.css);
 @import url(./blocks/about-me/__link/about-me__link.css);
-
+/* portfolio */
 @import url(./blocks/portfolio/portfolio.css);
 @import url(./blocks/portfolio/__title/portfolio__title.css);
 @import url(./blocks/portfolio/__list/portfolio__list.css);
 @import url(./blocks/portfolio/__item/portfolio__item.css);
 @import url(./blocks/portfolio/__link/portfolio__link.css);
+/* tag */
+@import url(./blocks/tag/tag.css);

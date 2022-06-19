@@ -3,18 +3,25 @@
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
-  /* justify-content: center;
-  justify-items: center; */
   justify-content: space-between;
-
   align-items: center;
   align-self: center;
-
   background-color: #073042;
   background-image: url(../../images/logo-bg.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 320px;
-
   min-height: 664px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .promo {
+    min-height: 710px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .promo {
+
+  }
 }

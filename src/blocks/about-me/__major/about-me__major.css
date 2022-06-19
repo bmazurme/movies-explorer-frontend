@@ -9,3 +9,16 @@
   margin: 0;
   grid-area: major;
 }
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .about-me__major {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .about-me__major {
+
+  }
+}

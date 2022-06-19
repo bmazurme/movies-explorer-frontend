@@ -7,7 +7,7 @@ function Movies() {
   return(
   <>
     <Header/>
-    {/* <SearchForm/> */}
+    <SearchForm/>
     <MovieCardList/>
     <Footer/>
   </>);

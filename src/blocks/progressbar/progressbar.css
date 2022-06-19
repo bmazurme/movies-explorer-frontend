@@ -1,7 +1,19 @@
 .progressbar {
   height: 36px;
-  width: 100%;
-  background: #F2F2F2;
+  /* width: 100%; */
+  background: #f2f2f2;
   display: flex;
   flex-direction: row;
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .progressbar {
+
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .progressbar {
+
+  }
 }

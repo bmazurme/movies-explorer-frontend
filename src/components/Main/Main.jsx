@@ -14,7 +14,6 @@ function Main() {
       <AboutMe/>
       <Portfolio/>
       <Footer/>
-      
     </>
   );
 }

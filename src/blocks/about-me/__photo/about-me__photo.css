@@ -7,5 +7,22 @@
   margin-left: auto;
   padding: 0;
   grid-area: photo;
+}
 
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .about-me__photo {
+    min-width: 292px;
+    height: 352px;
+    margin: auto;
+    padding: auto;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+    margin: 0;
+    padding: 0;
+  }
 }

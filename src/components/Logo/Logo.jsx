@@ -1,8 +1,7 @@
-function Logo () {
+function Logo() {
   return(
     <a className="logo" href="/">      
-      <div className="logo__icon">
-      </div>
+      <div className="logo__icon"/>
     </a>
   );
 }

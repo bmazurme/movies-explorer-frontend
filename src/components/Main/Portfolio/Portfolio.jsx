@@ -1,17 +1,19 @@
+import { cards } from "./cards";
+
 function Portfolio() {
   return(
     <section className="portfolio">
-      <h3 className="portfolio__title">Портфолио</h3>
+      <h3 className="portfolio__title">
+        Портфолио
+      </h3>
       <ul className="portfolio__list">
-        <li className="portfolio__item">
-          <a href="/" className="portfolio__link">Статичный сайт</a>
-        </li>
-        <li className="portfolio__item">
-          <a href="/" className="portfolio__link">Адаптивный сайт</a>
-        </li>
-        <li className="portfolio__item">
-          <a href="/" className="portfolio__link">Одностраничное приложение</a>
-        </li>
+        {cards.map((card, index) => 
+          <li className="portfolio__item" key={index}>
+            <a href={card.url} className="portfolio__link">
+              {card.name}
+            </a>
+          </li>
+        )}
       </ul>
     </section>
   );

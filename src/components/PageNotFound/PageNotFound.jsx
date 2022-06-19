@@ -1,11 +1,4 @@
-const data = {
-  code: 404,
-  text: 'Страница не найдена',
-  link: {
-    url: '/',
-    label: 'Назад',
-  }
-};
+import { data } from "./data";
 
 function PageNotFound() {
   return(
