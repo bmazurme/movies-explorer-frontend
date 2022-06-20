@@ -17,18 +17,23 @@ function Promo() {
           </a>
         </div>
       </div>
+      <div className="promo__cover">
       <h1 className="promo__title">
-        Учебный проект студента факультета Веб-разработки.
-      </h1>
-      <ul className="promo__tabs">
-        {links.map((link, index) => 
-          <li className="promo__tab" key={index}>
-            <a className="promo__link" href={link.url}>
-              {link.name}
-            </a>
-          </li>
-        )}
-      </ul>
+          Учебный проект студента факультета Веб-разработки.
+        </h1>
+
+        <ul className="promo__tabs">
+          {links.map((link, index) => 
+            <li className="promo__tab" key={index}>
+              <a className="promo__link" href={link.url}>
+                {link.name}
+              </a>
+            </li>
+          )}
+        </ul>
+      </div>
+
+
     </section>
   );
 }

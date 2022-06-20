@@ -1,14 +1,15 @@
 .progressbar {
   height: 36px;
-  /* width: 100%; */
   background: #f2f2f2;
   display: flex;
   flex-direction: row;
+  margin: 0;
+  padding: 0;
 }
 
 @media screen and (min-width: 320px) and (max-width: 479px) {
   .progressbar {
-
+    margin-bottom: 93px;
   }
 }
 

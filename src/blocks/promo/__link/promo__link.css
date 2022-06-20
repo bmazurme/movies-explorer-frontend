@@ -6,7 +6,8 @@
   display: flex;
   align-items: center;
   text-decoration-line: underline;
-  color: #ffffff;
+  color: #000000;
+  text-decoration: none;
   opacity: 1;
   transition: opacity 0.5s ease;
 }

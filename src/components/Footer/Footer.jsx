@@ -14,7 +14,7 @@ function Footer() {
         </p>
         <ul className="footer__menu">
           {links.map((link,index) => 
-            <li>
+            <li key={index}>
               <a className="footer__link" href={link.url}>
                 {link.name}
               </a>

@@ -1,5 +1,6 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts.css);
+@import url(./blocks/body/body.css);
 /* root */
 @import url(./blocks/root/root.css);
 /* logo */
@@ -76,6 +77,9 @@
 @import url(./blocks/button/_dislike/button_dislike.css);
 @import url(./blocks/button/_liked/button_like.css);
 @import url(./blocks/button/_submit/button_submit.css);
+@import url(./blocks/button/_more/button_more.css);
+/* more  */
+@import url(./blocks/more/more.css);
 /* card-list */
 @import url(./blocks/card-list/card-list.css);
 /* field */
@@ -114,6 +118,7 @@
 @import url(./blocks/promo/__icon/promo__icon.css);
 @import url(./blocks/promo/__signin/promo__signin.css);
 @import url(./blocks/promo/__signup/promo__signup.css);
+@import url(./blocks/promo/__cover/promo__cover.css);
 /* about-me */
 @import url(./blocks/about-me/about-me.css);
 /* @import url(./blocks/about-me/__tag/about-me__tag.css); */

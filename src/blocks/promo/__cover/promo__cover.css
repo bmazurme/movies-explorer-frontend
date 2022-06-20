@@ -1,0 +1,25 @@
+.promo__cover {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--promo-cover-background);
+  margin-top: 22px;
+  margin-bottom: 0;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-radius: 10px;
+  width: calc(100% - 80px);
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .promo__cover {
+    margin-top: 10px;
+    width: calc(100% - 28px);
+    min-height: 586px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .promo__cover {
+
+  }
+}

@@ -6,9 +6,9 @@
   width: 100%;
   display: grid;
   gap: 0;
-    grid-template-areas: "box switcher";
-    grid-template-columns: 1fr 210px;
-    grid-template-rows: 1fr;
+    grid-template-areas: "box" "switcher";
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px 100px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 479px) {

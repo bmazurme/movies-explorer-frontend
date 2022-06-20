@@ -1,15 +1,14 @@
 .search-form__button {
   box-sizing: content-box;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
+  align-items: center;
+  align-self: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
   background: #3456f3;
   border: 0;
   margin: 0;
-  padding: 0;
-  position: absolute;
-  right: 7px;
-  top: 88px;
+  /* padding: 0; */
   cursor: pointer;
   background-image: url(../../../images/search.svg);
   background-position: center;
@@ -25,7 +24,6 @@
 
 @media screen and (min-width: 480px) and (max-width: 768px) {
   .search-form__button {
-    right: 7px;
-    top:8px;
+
   }
 }

@@ -1,5 +1,5 @@
 .promo__signin {
-  background: #2be080;
+  background: var(--promo-signin-button-bg);
   border-radius: 3px;
   width: 76px;
   height: 32px;
@@ -9,7 +9,7 @@
   line-height: 16px;
   display: flex;
   align-items: center;
-  color: #000000;
+  color: var(--promo-signin-button);
   padding: 0;
   margin: 0;
   display: flex;

@@ -1,8 +1,8 @@
 .search-form__box {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: row;
-  position: relative;
+  align-items: flex-end;
   grid-area: box;
   z-index: 0;
 }
