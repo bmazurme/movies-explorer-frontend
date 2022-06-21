@@ -12,7 +12,7 @@ function AboutMe() {
         <ul className="about-me__links">
           {links.map((link, index) =>
             <li key={index}>
-              <a href={link.url} className="about-me__link">
+              <a href={link.url} target="_blank" className="about-me__link" rel="noreferrer">
                 {link.name}
               </a>
             </li>

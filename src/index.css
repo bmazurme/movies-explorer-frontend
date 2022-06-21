@@ -17,6 +17,7 @@
 @import url(./blocks/navigation/__links/navigation__links.css);
 @import url(./blocks/navigation/__links/_opened/navigation__links_opened.css);
 @import url(./blocks/navigation/__link/_active/navigation__link_active.css);
+@import url(./blocks/navigation/__link/_home/navigation__link_home.css);
 /* error */
 @import url(./blocks/error/error.css);
 @import url(./blocks/error/__code/error__code.css);

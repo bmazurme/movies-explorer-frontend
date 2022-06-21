@@ -9,7 +9,7 @@ function Portfolio() {
       <ul className="portfolio__list">
         {cards.map((card, index) => 
           <li className="portfolio__item" key={index}>
-            <a href={card.url} className="portfolio__link">
+            <a href={card.url} target="_blank" className="portfolio__link" rel="noreferrer">
               {card.name}
             </a>
           </li>

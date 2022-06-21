@@ -9,14 +9,13 @@
   margin-bottom: 0;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Inter';
+  font-family: 'Inter','Helvetica Neue', Arial, sans-serif;
   font-style: normal;
   background: #fafafa;
 
   --header-background: #ffffff;
   --card-background: #ffffff;
   --techs-background: #f5f5f5;;
-  /* --promo-tabs-background: #ffffff; */
   --promo-tab-background: #e8e8e8;
   --promo-cover-background: #f5f5f5;
   --promo-signin-button-bg: #3456f3;

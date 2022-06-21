@@ -1,14 +1,14 @@
 export const cards = [
   {
     name: 'Статичный сайт',
-    url: '/movies',
+    url: 'https://bmazurme.github.io/how-to-learn/',
   },
   {
     name: 'Адаптивный сайт',
-    url: '/movies',
+    url: 'https://bmazurme.github.io/russian-travel/',
   },
   {
     name: 'Одностраничное приложение',
-    url: '/movies',
+    url: 'https://bmazurme.github.io/react-mesto-auth',
   },
 ];

@@ -16,6 +16,12 @@ function Navigation(props) {
             }
         >
           <li>
+            <a className="navigation__link navigation__link_active navigation__link_home"
+              href="/">
+                Главная
+              </a>
+          </li>
+          <li>
             <a className="navigation__link navigation__link_active"
               href="/movies">
                 Фильмы

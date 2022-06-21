@@ -5,6 +5,6 @@ export const links = [
   },
   {
     name: 'Github',
-    url: '/',
+    url: 'https://github.com/bmazurme',
   },
 ];
