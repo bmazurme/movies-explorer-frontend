@@ -1,0 +1,20 @@
+.button_more {
+  background: #f4f4f4;
+  border-radius: 6px;
+  border: 0;
+  max-width: 1140px;
+  width: 100%;
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+
+.button_more:hover {
+  opacity: 0.7;
+}

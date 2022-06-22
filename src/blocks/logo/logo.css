@@ -1,0 +1,24 @@
+.logo {
+  width: 38px;
+  height: 38px;
+  margin: 0;
+  padding: 0;
+  align-self: center;
+  align-items: center;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 320px) and (max-width: 599px) {
+  .logo {
+    align-self: center;
+    align-items: center;
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 580px) and (max-width: 879px) {
+  .logo {
+    align-self: center;
+    align-items: center;
+  }
+}

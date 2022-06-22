@@ -1,0 +1,31 @@
+.navigation__links {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  z-index: 1000;
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .navigation__links {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 144px;
+    position: relative;
+    height: 100vh;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .navigation__links {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 150px;
+    position: relative;
+    height: 100vh;
+  }
+}

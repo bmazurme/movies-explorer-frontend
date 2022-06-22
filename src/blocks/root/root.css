@@ -1,0 +1,40 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  box-sizing: content-box;
+  height: 100%;
+  max-width: 1280px;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Inter','Helvetica Neue', Arial, sans-serif;
+  font-style: normal;
+  background: #fafafa;
+
+  --header-background: #ffffff;
+  --card-background: #ffffff;
+  --techs-background: #f5f5f5;;
+  --promo-tab-background: #e8e8e8;
+  --promo-cover-background: #f5f5f5;
+  --promo-signin-button-bg: #3456f3;
+  --promo-signup-button: #000000;
+  --promo-signin-button: #ffffff;
+  --promo-title: #000000;
+  --promo-rogressbar-left-bg: #3456f3;
+  --card-list-background: #f5f5f5;;
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 599px) {
+  .root {
+
+  }
+}
+
+@media screen and (min-width: 580px) and (max-width: 879px) {
+  .root {
+
+  }
+}

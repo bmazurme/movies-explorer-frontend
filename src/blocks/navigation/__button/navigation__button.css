@@ -1,0 +1,43 @@
+.navigation__button {
+  display: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .navigation__button {
+    display: flex;
+    height: 38px;
+    width: 38px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: #fafafa;
+    background-image: url(../../../images/burger.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 44px;
+    cursor: pointer;
+    position: absolute;
+    top: 18px;
+    right: 14px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .navigation__button {
+    display: flex;
+    height: 38px;
+    width: 38px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: #fafafa;
+    background-image: url(../../../images/burger.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 38px;
+    cursor: pointer;
+    position: absolute;
+    top: 18px;
+    right: 14px;
+  }
+}

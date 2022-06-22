@@ -1,0 +1,31 @@
+.cell {
+  margin: 0;
+  padding: 0;
+}
+.cell:first-child {
+  margin-right: 20px;
+}
+.cell:last-child {
+  margin-left: 20px;
+}
+
+
+
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .cell:first-child {
+    margin-right: 0;
+  }
+  .cell:last-child {
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .cell:first-child {
+    margin-right: 15px;
+  }
+  .cell:last-child {
+    margin-left: 15px;
+  }
+}

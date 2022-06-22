@@ -1,0 +1,22 @@
+.movie-card__detail {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  display: flex;
+  align-items: center;
+  color: #a0a0a0;
+  margin: 16px;
+  padding-top: 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .movie-card__detail {
+    margin: 14px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .movie-card__detail {
+    margin: 14px;
+  }
+}

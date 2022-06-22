@@ -1,0 +1,26 @@
+.switcher {
+  grid-area: switcher;
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+  align-items: center;
+  align-self: center;
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .switcher {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .switcher {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

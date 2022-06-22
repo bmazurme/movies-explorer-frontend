@@ -1,0 +1,17 @@
+.techs {
+  display: flex;
+  flex-direction: column;
+  background: var(--techs-background);
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .techs {
+    background: #ffffff;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .techs {
+
+  }
+}

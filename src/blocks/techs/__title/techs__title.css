@@ -1,0 +1,28 @@
+.techs__title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  letter-spacing: -0.04em;
+  color: #000000;
+  margin: 0;
+  margin-top: 90px;
+  padding: 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .techs__title {
+    font-size: 30px;
+    line-height: 36px;
+    margin-top: 60px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .techs__title {
+    font-size: 50px;
+    line-height: 58px;
+    margin-top: 80px;
+  }
+}

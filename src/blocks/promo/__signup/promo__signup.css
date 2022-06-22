@@ -1,0 +1,30 @@
+.promo__signup {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  text-decoration: none;
+  color: var(--promo-signup-button);
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .promo__signup {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .promo__signup {
+
+  }
+}

@@ -1,0 +1,34 @@
+.promo__signin {
+  background: var(--promo-signin-button-bg);
+  border-radius: 3px;
+  width: 76px;
+  height: 32px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  color: var(--promo-signin-button);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .promo__signin {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .promo__signin {
+
+  }
+}

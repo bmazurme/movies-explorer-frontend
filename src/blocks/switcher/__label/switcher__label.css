@@ -1,0 +1,12 @@
+.switcher__label {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000000;
+
+  margin: 0;
+  margin-right: 14px;
+  padding: 0;
+}

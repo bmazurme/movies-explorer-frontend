@@ -1,0 +1,15 @@
+.profile-button__label {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 12px;
+  text-decoration: none;
+  color: #222222;
+  margin: 0;
+  margin-left: 11px;
+  margin-right: 7px;
+  padding: 0;
+  display: flex;
+  align-self: center;  
+}

@@ -1,0 +1,24 @@
+.cell__title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .cell__title {
+    font-size: 18px;
+    line-height: 22px;
+
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .cell__title {
+
+  }
+}
