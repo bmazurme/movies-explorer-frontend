@@ -1,21 +1,23 @@
 import React from 'react';
-import { movieCard } from './movieCard';
+//import { movieCard } from './movieCard';
 
-function MovieCard() {
+function MovieCard(props) {
   const [isOpen, setIsOpen] = React.useState(false);
   function handlerClick() {
     setIsOpen(!isOpen);
   }
   return(
     <div className="movie-card">
-      <img
-        src={movieCard.cover}
-        alt={movieCard.alt} 
-        className="movie-card__image"
-      />
+      <a href={props.trailerLink} target='_blank' rel="noreferrer">
+        <img
+          src={`https://api.nomoreparties.co/${props.image.url}`}
+          alt={props.image.alternativeText} 
+          className="movie-card__image"
+        />
+      </a>
       <div className="movie-card__box">
         <p className="movie-card__title">
-          {movieCard.title}
+          {props.nameRU}
         </p>
         <button
           className={`button
@@ -27,7 +29,7 @@ function MovieCard() {
           onClick={handlerClick}/>
       </div>      
       <p className="movie-card__detail">
-        {movieCard.detail}
+        {props.duration}
       </p>
     </div>
   );

@@ -5,13 +5,16 @@ function Inbox(props) {
         {props.name}
       </label>
       <input
-        className="input inbox__input" 
-        type="text"
-        id="" required 
-        data-validation=""
+        onChange={props.onChange}
+        className="input inbox__input"
+        type={props.type}
+        id={props.id}
+        required 
+        autoComplete={props.autoComplete}
+        value={props.value}
       />
-      <span className=""></span>
-      <span className=""></span>
+      <span className={``}></span>
+      <span className={``}></span>
     </div>
   );
 }

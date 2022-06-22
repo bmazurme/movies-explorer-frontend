@@ -1,22 +1,19 @@
 import Header from "../Header/Header";
 import Field from "./Field";
-import { fields } from "./fields";
+import Links from "./Links.jsx";
+import { menu } from "./menu";
 
-function Profile() {
+function Profile(props) {
   return(
     <>
       <Header/>
       <section className="profile">
         <h2 className="profile__title">
-          Привет, Виталий!
+          Привет, {props.name}!
         </h2>
-        {fields.map((field, index) => <Field key={index} {...field}/> )}
-        <div className="profile__links">
-          <a className="profile__link" href='/'>Редактировать</a>
-          <a className="profile__link profile__link_red" href='/'>
-            Выйти из аккаунта
-          </a>
-        </div>
+        <Field label={'Имя'} value={props.name}/>
+        <Field label={'E-mail'} value={props.email}/>
+        <Links links={menu}/>
       </section>
     </>
   );

@@ -4,12 +4,17 @@ import MovieCardList from "./MoviesCardList/MoviesCardList";
 import SearchForm from "./SearchForm/SearchForm";
 import More from "./More/More";
 
-function Movies() {
+function Movies(props) {
   return(
   <>
     <Header/>
-    <SearchForm/>
-    <MovieCardList/>
+    <SearchForm
+      handlerClick={props.handlerClick}
+      shortFilm={props.shortFilm}
+    />
+    <MovieCardList
+      movies={props.movies}
+    />
     <More/>
     <Footer/>
   </>);
