@@ -1,6 +1,6 @@
 import Switcher from "../Switcher/Switcher";
 
-function SearchForm() {
+function SearchForm(props) {
   return(
     <section className="search">
       <div className="form search-form">
@@ -12,7 +12,10 @@ function SearchForm() {
           <p className="switcher__label">
             Короткометражки
           </p>
-          <Switcher/>
+          <Switcher
+            shortFilm={props.shortFilm}
+            handlerClick={props.handlerClick}
+          />
         </div>
       </div>
     </section>

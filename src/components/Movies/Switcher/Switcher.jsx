@@ -1,19 +1,15 @@
 import React from "react";
 
-function Switcher() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  function handlerClick() {
-    setIsOpen(!isOpen);
-  }
+function Switcher(props) {
   return(
     <button
       type="button"
       className={`button  
-        ${isOpen 
+        ${props.shortFilm 
           ? 'switcher__button_on' 
           : 'switcher__button'}
         `}
-      onClick={handlerClick}
+      onClick={props.handlerClick}
     />
   );
 }

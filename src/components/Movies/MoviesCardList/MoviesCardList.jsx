@@ -1,10 +1,14 @@
 import MovieCard from "../MoviesCard/MoviesCard";
-import { cards } from "./cards";
 
-function MovieCardList() {
+function MovieCardList(props) {
   return(
     <section className="card-list">
-      {cards.map((card, index) => <MovieCard key={index}/>)}
+      {props.movies.map((movie, index) => 
+        <MovieCard
+          key={index}
+          {...movie}
+        />
+      )}
     </section>
   );
 }
