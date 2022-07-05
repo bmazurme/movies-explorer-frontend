@@ -23,3 +23,5 @@ Frontend
 [link](https://github.com/bmazurme/movies-explorer-frontend/pull/1)
 
 https://github.com/bmazurme/movies-explorer-frontend/pull/2
+
+demo https://joinus.nomoredomains.xyz/
