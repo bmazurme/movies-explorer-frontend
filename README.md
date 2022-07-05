@@ -21,3 +21,5 @@ Frontend
 ![Nodejs](https://img.shields.io/badge/-Nodejs-black?style=flat-square&logo=Node.js)
 
 [link](https://github.com/bmazurme/movies-explorer-frontend/pull/1)
+
+https://github.com/bmazurme/movies-explorer-frontend/pull/2
