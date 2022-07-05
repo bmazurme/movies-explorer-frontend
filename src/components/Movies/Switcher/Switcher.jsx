@@ -9,7 +9,7 @@ function Switcher(props) {
           ? 'switcher__button_on' 
           : 'switcher__button'}
         `}
-      onClick={props.handlerClick}
+      onClick={props.handlerSwitchClick}
     />
   );
 }

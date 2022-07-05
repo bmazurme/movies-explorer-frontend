@@ -3,21 +3,16 @@ import Inbox from "../Inbox/Inbox";
 import Button from "./Button";
 import SignFooter from "./SignFooter";
 import React from "react";
+import { useFormWithValidation } from "../../utils/validator";
 
 function Signin(props) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const {values, handleChange, errors, isValid} = useFormWithValidation();
 
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
   function handleSubmit(e) {
     e.preventDefault();
-    props.signIn({email, password})
+    props.signIn({email: values.email, password: values.password})
   }
+
   return(
     <section className="sign">
       <div className="container">
@@ -27,22 +22,29 @@ function Signin(props) {
         </h2>
         <form onSubmit={handleSubmit}>
           <Inbox
-            onChange={handleEmailChange}
-            name={'E-mail'}
+            onChange={handleChange}
+            placeholder={'E-mail'}
+            errors={errors}
+            name={'email'}
             type={'email'}
             id={`email-input`}
             autoComplete={`off`}
-            value={email || ''}
+            value={values.email || ''}
           />
           <Inbox
-            onChange={handlePasswordChange}
-            name={'Пароль'}
+            onChange={handleChange}
+            placeholder={'Пароль'}
+            errors={errors}
+            name={'password'}
             type={'password'}
             id={`password-input`}
             autoComplete={`off`}
-            value={password || ''}
+            value={values.password || ''}
+            minLength={6}
+            maxLength={20}
           />
           <Button
+            isValid={isValid}
             class={`button_submit`}
             value={`Войти`}
           />

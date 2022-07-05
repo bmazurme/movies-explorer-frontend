@@ -1,3 +1,5 @@
+import { AUTH_URL } from "./constants";
+
 export class Auth {
   constructor(options) {
     this._options = options;
@@ -49,28 +51,51 @@ export class Auth {
   
   getUser() {
     return fetch(`${this._options.baseUrl}/users/me`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        'Content-Type': 'application/json'
-      },
+      headers: this._options.headers
       })
       .then(this._checkResponse);
   }
   
-  checkToken(jwt) {
+  checkToken(token) {
     return fetch(`${this._options.baseUrl}/users/me`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${jwt}`,
-      },
+      method: 'GET',
+      headers: this._options.headers
     })
-    .then(this._checkResponse)
+    .then(this._checkResponse);
   };
+
+  getMovies() {
+    return fetch(`${this._options.baseUrl}/movies`, {
+      method: 'GET',
+      headers: this._options.headers
+    })
+    .then(this._checkResponse);
+  }
+
+  postMovie(movie) {
+    return fetch(`${this._options.baseUrl}/movies`, {
+      method: 'POST',
+      headers: this._options.headers,
+      body: JSON.stringify(movie)
+    })
+    .then(res => this._checkResponse(res));
+  }
+
+  deleteMovie(id) {
+    return fetch(`${this._options.baseUrl}/movies/${id}`, {
+      method: 'DELETE',
+      headers: this._options.headers,
+    })
+    .then(res => this._checkResponse(res));
+  }
 }
 
 const auth = new Auth({
-  baseUrl: 'https://api.joinus.nomoredomains.xyz',
+  baseUrl: AUTH_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+  },
 });
 
 export default auth;

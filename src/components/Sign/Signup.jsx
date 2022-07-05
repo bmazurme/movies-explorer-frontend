@@ -3,25 +3,18 @@ import Inbox from "../Inbox/Inbox";
 import Button from "./Button";
 import SignFooter from "./SignFooter";
 import React from "react";
+import { useFormWithValidation } from "../../utils/validator";
 
 function Signup(props) {
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const {values, handleChange, errors, isValid} = useFormWithValidation();
 
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
   function handleSubmit(e) {
     e.preventDefault();
-    props.signUp({email, password, name});
+    props.signUp({email: values.email, password: values.password, name: values.name});
   }
+
+  console.log(errors)
+
   return(
     <section className="sign">
       <div className="container">
@@ -31,30 +24,41 @@ function Signup(props) {
         </h2>
         <form onSubmit={handleSubmit}>
           <Inbox
-            onChange={handleNameChange}
-            name={'Имя'}
+            onChange={handleChange}
+            name={'name'}
+            placeholder={'Имя'}
             type={'text'}
             id={`name-input`}
             autoComplete={`off`}
-            value={name || ''}
+            value={values.name || ''}
+            errors={errors}
+            minLength={4}
+            maxLength={20}
           />
           <Inbox
-            onChange={handleEmailChange}
-            name={'E-mail'}
+            onChange={handleChange}
+            name={'email'}
+            placeholder={'E-mail'}
             type={'email'}
             id={`email-input`}
             autoComplete={`off`}
-            value={email || ''}
+            value={values.email || ''}
+            errors={errors}
           />
           <Inbox
-            onChange={handlePasswordChange}
-            name={'Пароль'}
+            onChange={handleChange}
+            placeholder={'Пароль'}
+            name={'password'}
             type={'password'}
             id={`password-input`}
             autoComplete={`off`}
-            value={password || ''}
+            value={values.password || ''}
+            errors={errors}
+            minLength={6}
+            maxLength={20}
           />
           <Button
+            isValid={isValid}
             class={`button_submit`}
             value={`Зарегистрироваться`}
           />
