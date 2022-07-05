@@ -2,6 +2,7 @@ import Header from "../Header/Header";
 import Field from "./Field";
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 
 function Profile(props) {
   const currentUser = useContext(CurrentUserContext);
@@ -17,16 +18,16 @@ function Profile(props) {
         <Field label={'E-mail'} value={currentUser.email}/>
         <ul className="profile__links">
           <li>
-            <a className='profile__link' href='/profile-edit'>
+            <NavLink className='profile__link' to='/profile-edit'>
               Редактировать
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              className='profile__link profile__link_red' href='/' 
+            <NavLink
+              className='profile__link profile__link_red' to='/' 
               onClick={props.handleLogOut}>
               Выйти из аккаунта
-            </a>
+            </NavLink>
           </li>
         </ul>
       </section>

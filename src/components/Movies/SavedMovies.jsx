@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SearchForm from './SearchForm/SearchForm';
 import MovieCardList from './MoviesCardList/MoviesCardList';
-import Progress from '../Progress/Progress';
+import Progress from '../Preloader/Preloader';
 import InfoTooltip from '../Popup/Popup';
 import NotFound from './NotFound/NotFound';
 import More from './More/More';

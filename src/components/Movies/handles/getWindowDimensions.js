@@ -38,18 +38,3 @@ export function getVisualProps({width}) {
   };
   return visibleCardsNumbers[point];
 };
-
-// Ширина 1280px — 12 карточек по 3 в ряд. Кнопка «Ещё» загружает по 3 карточки.
-// Ширина 768px — 8 карточек по 2 в ряд. Кнопка «Ещё» загружает по 2 карточки.
-// Ширина от 320px до 480px — 5 карточек по 1 в ряд. Кнопка «Ещё» загружает по 2 карточки.
-
-
-// function getScreenDimensions() {
-//   const { width, height } = window.screen;
-//   return { width, height };
-// }
-
-// export function useScreenDimensions() {
-//   const [screenDimensions] = useState(getScreenDimensions());
-//   return screenDimensions;
-// }

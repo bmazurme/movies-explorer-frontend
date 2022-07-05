@@ -14,11 +14,6 @@ function InfoTooltip(props) {
           onClick={props.onClose}
         />
         <div className="tooltip">
-          {/* <div className={`tooltip__image ${props.isSuccess 
-            ? 'tooltip__image_success'
-            : ''}`}
-          >
-          </div> */}
           <p className="popup__title">
             {props.text.title}
           </p>

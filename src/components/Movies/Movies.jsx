@@ -6,7 +6,7 @@ import More from './More/More';
 import React from 'react';
 import api from '../../utils/MoviesApi';
 import auth from '../../utils/MainApi';
-import Progress from '../Progress/Progress';
+import Progress from '../Preloader/Preloader';
 import getMovie from './handles/getMovie';
 import findMovie from './handles/findFilms';
 import NotFound from './NotFound/NotFound';

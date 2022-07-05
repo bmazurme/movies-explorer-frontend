@@ -30,54 +30,27 @@ function App() {
     setTextError({title: '', description: ''});
   } 
 
-  const tokenCheck = async () => {
-    const jwt = localStorage.getItem('jwt');
-   
-    const result = await auth.checkToken(jwt);
-
-    console.log(result);
-
-    if (result.email) {
-      setLoggedIn(true);
-      setCurrentUser(result);
-      history.push('/movies');
-      return true;
-    } else {
-      setLoggedIn(false);
-      setCurrentUser({});
-      history.push('/signin');
-      return false;
+  const tokenCheck = () => {
+    if (localStorage.getItem('jwt')) {
+      const jwt = localStorage.getItem('jwt');
+      auth.checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setCurrentUser(res);
+            setLoggedIn(true);
+            history.push('/movies');
+          }
+        })
+        .catch(err => {
+          console.log('Переданный токен некорректен.');
+          setLoggedIn(false);
+        });
     }
-
-    //setLoggedIn(true);
-
-
-
-    // if (localStorage.getItem('jwt')) {
-    //   const jwt = localStorage.getItem('jwt');
-    //   console.log(jwt)
-    //   auth.checkToken(jwt)
-    //     .then((res) => {
-    //       if (res) {
-    //         setLoggedIn(true);
-    //         setCurrentUser(res);
-            
-    //         console.log(loggedIn);
-    //         //history.push('/movies');
-    //         return true;
-    //       }
-    //     })
-    //     .catch(err => {
-    //       console.log('Переданный токен некорректен.');
-    //       setLoggedIn(false);
-    //       return false;
-    //     });
-    // }
   };
 
   React.useEffect(() => {
     tokenCheck();
-  }, []);
+  }, [loggedIn]);
 
   React.useEffect(() => {
     Promise.all([auth.getUser(), api.getMovies()])
@@ -161,12 +134,12 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
         <ProtectedRoute 
-          loggedIn={tokenCheck}   
+          loggedIn={loggedIn}   
           component={Movies}   
           path='/movies'
         />
         <ProtectedRoute
-          loggedIn={tokenCheck}
+          loggedIn={loggedIn}
           component={Profile}
           path='/profile'
           handleLogOut={handleLogOut}

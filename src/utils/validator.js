@@ -27,6 +27,3 @@ export function useFormWithValidation() {
 
   return { values, handleChange, errors, isValid, resetForm, setIsValid, setValues };
 }
-
-
-// setEmail(e.target.value);
