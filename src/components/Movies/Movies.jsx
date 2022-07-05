@@ -16,6 +16,7 @@ import {useWindowDimensions, getVisualProps } from './handles/getWindowDimension
 import {
   ERROR_TITLE_NOT_FOUND,
   ERROR_DESCRIPTION_NOT_FOUND,
+  ERROR_TITLE_DEFAULT,
 } from '../../utils/constants';
 
 function Movies(props) {
@@ -31,16 +32,21 @@ function Movies(props) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isNotFound, setIsNotFound] = React.useState(false);
   const [isMore, setIsMore] = React.useState(true);
+  const [source, setSource] = React.useState(false);
   const [moviesRaw, setMoviesRaw] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
   const [slice, setSlice] = React.useState(curr.slice);
   const [isOpen, setIsOpen] = React.useState(false);
-  const [textError, setTextError] = React.useState('');
+  const [textError, setTextError] = React.useState({title: '', description: ''});
 
   function closePopup() {
     setIsOpen(false);
-    setTextError('');
+    setTextError({
+      title: '',
+      description: ''
+    });
   } 
+
   
   function handleMoreClick() {
     if (data.shortFilm) {
@@ -74,7 +80,11 @@ function Movies(props) {
             }});
           setMovies(arr);
         })
-        .catch((error) => console.log(error));
+        .catch((err) => {
+          setIsOpen(true);
+          setTextError({title: ERROR_TITLE_DEFAULT, description: err});
+          console.log(err);
+        });
     } else {
       auth
         .postMovie(movie)
@@ -87,7 +97,11 @@ function Movies(props) {
             }});
           setMovies(arr);
         })
-        .catch((error) => console.log(error));
+        .catch((err) => {
+          setIsOpen(true);
+          setTextError({title: ERROR_TITLE_DEFAULT, description: err});
+          console.log(err);
+        });
     }
   }
 
@@ -114,70 +128,75 @@ function Movies(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    const result = findMovie(data, moviesRaw); // !
-    if (result.length === 0) {
-      setIsNotFound(true);
-      setIsMore(false);
-      setIsOpen(true);
-      setTextError('error');
-    } 
-    
-    if (result.length > 0) {
-      console.log(result);
-      setIsNotFound(false);
-      setMoviesRaw(result);
-      setMovies(result.slice(0,slice));
-      //localStorage.setItem('found', JSON.stringify(result));
+    setIsLoading(true);
+    new Promise((resolve, reject) => {
+      const result = findMovie(data, source);
+      setIsMore(true);
+      if (result.length === 0) {
+        setIsNotFound(true);
+        setIsMore(false);
+        // localStorage.setItem('movies', JSON.stringify(_movies)); ничего не делаем если не нашли
+      }
       
-      if (data.shortFilm) {
-        setMovies(result.filter(x => x.duration <= 40).slice(0,slice));
-        if (slice + curr.step >= result.slice(0,slice).length) {
-          setIsMore(false);
-        } 
-      } else {
+      if (result.length > 0) {
+        setIsNotFound(false);
+        setMoviesRaw(result);
+        localStorage.setItem('movies', JSON.stringify(result)); // сохраняем результат
         setMovies(result.slice(0,slice));
-        if (slice + curr.step >= result.length) {
-          setIsMore(false);
+        
+        if (data.shortFilm) {
+          setMovies(result.filter(x => x.duration <= 40).slice(0,slice));
+          if (slice + curr.step >= result.slice(0,slice).length) {
+            setIsMore(false);
+          } 
+        } else {
+          setMovies(result.slice(0,slice));
+          if (slice + curr.step >= result.length) {
+            setIsMore(false);
+          }
         }
       }
-    }
-    // if (data.shortFilm) {
-    //   setMovies(_movies.filter(x => x.duration <= 40).slice(0,slice));
-    //   if (slice + curr.step >= _movies.slice(0,slice).length) {
-    //     setIsMore(false);
-    //   } 
-    // } else {
-    //   setMovies(_movies.slice(0,slice));
-    //   if (slice + curr.step >= _movies.length) {
-    //     setIsMore(false);
-    //   }
-    // }
-  }
 
+      resolve(setIsLoading(false));
+      reject((err)=> {
+        setIsOpen(true);
+        setTextError({title: ERROR_TITLE_DEFAULT, description: err});});
+      // setTimeout(()=>resolve(setIsLoading(false)), 1000)  
+    });
+  }
+     
   React.useEffect(() => {
     setIsLoading(true);
     Promise.all([ api.getMovies(), auth.getMovies()])
       .then(([moviesDTO, myMoviesDTO]) => {
         const _movies = combineMovies(moviesDTO, myMoviesDTO);
-        // localStorage.setItem('movies', JSON.stringify(_movies));
-        setMoviesRaw(_movies);
-        setMovies(_movies.slice(0,slice));
-
+        setSource(_movies); // -> полученные с сервера не трогаем - используем для поиска
+        
+        //const savedMovies = JSON.parse(localStorage.getItem('movies')); // читаем сохраненные
+        let savedMovies = [];
+        const localData = localStorage.getItem('movies');
+        if (localData) {
+          savedMovies = JSON.parse(localData);
+          setMoviesRaw(savedMovies); //  -> для отображения берем из стора - записываем после поиска
+          setMovies(savedMovies);
+        }
+        
         if (data.shortFilm) {
-          setMovies(_movies.filter(x => x.duration <= 40).slice(0,slice));
-          if (slice + curr.step >= _movies.slice(0,slice).length) {
+          setMovies(savedMovies.filter(x => x.duration <= 40).slice(0,slice));
+          if (slice + curr.step >= savedMovies.slice(0,slice).length) {
             setIsMore(false);
           } 
         } else {
-          setMovies(_movies.slice(0,slice));
-          if (slice + curr.step >= _movies.length) {
+          setMovies(savedMovies.slice(0,slice));
+          if (slice + curr.step >= savedMovies.length) {
             setIsMore(false);
           }
         }
         setIsLoading(false);
       })
       .catch(err => {
+        setIsOpen(true);
+        setTextError({title: ERROR_TITLE_DEFAULT, description: err});
         console.log(err);
       });
   }, []);
@@ -212,9 +231,6 @@ function Movies(props) {
         </>}
       <Footer/>
     </>
-
-
-      
   );
 }
 

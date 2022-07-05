@@ -4,6 +4,7 @@ import Button from "./Button";
 import SignFooter from "./SignFooter";
 import React from "react";
 import { useFormWithValidation } from "../../utils/validator";
+import InfoTooltip from "../Popup/Popup";
 
 function Signup(props) {
   const {values, handleChange, errors, isValid} = useFormWithValidation();
@@ -12,8 +13,6 @@ function Signup(props) {
     e.preventDefault();
     props.signUp({email: values.email, password: values.password, name: values.name});
   }
-
-  console.log(errors)
 
   return(
     <section className="sign">
@@ -68,6 +67,11 @@ function Signup(props) {
           link={{url: '/signin', label: 'Войти'}}
         />
       </div>
+      <InfoTooltip 
+        isOpen={props.isOpen}
+        onClose={props.onClose}
+        text={props.text}
+      />
     </section>
   );
 }

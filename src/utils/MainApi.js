@@ -29,7 +29,6 @@ export class Auth {
   };
   
   signIn({email, password}) {
-    console.log(email, password)
     return fetch(`${this._options.baseUrl}/signin`, {
       method: "POST",
       headers: {
@@ -46,12 +45,22 @@ export class Auth {
           localStorage.setItem("jwt", data.token);
           return data;
         }
-      })  
+      });
   };
   
   getUser() {
     return fetch(`${this._options.baseUrl}/users/me`, {
       headers: this._options.headers
+      })
+      .then(this._checkResponse);
+  }
+
+  patchUser(user) {
+    console.log(user)
+    return fetch(`${this._options.baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._options.headers,
+      body: JSON.stringify(user)
       })
       .then(this._checkResponse);
   }

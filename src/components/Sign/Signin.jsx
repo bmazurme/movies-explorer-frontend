@@ -4,6 +4,7 @@ import Button from "./Button";
 import SignFooter from "./SignFooter";
 import React from "react";
 import { useFormWithValidation } from "../../utils/validator";
+import InfoTooltip from "../Popup/Popup";
 
 function Signin(props) {
   const {values, handleChange, errors, isValid} = useFormWithValidation();
@@ -54,6 +55,11 @@ function Signin(props) {
           link={{url: '/signup', label: 'Регистрация'}}
         />
       </div>
+      <InfoTooltip 
+        isOpen={props.isOpen}
+        onClose={props.onClose}
+        text={props.text}
+      />
     </section>
   );
 }

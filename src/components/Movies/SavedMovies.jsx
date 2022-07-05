@@ -38,7 +38,10 @@ function SavedMovies() {
 
   function closePopup() {
     setIsOpen(false);
-    setTextError('');
+    setTextError({
+      title: '',
+      description: ''
+    });
   } 
 
   function handleMoreClick() {
@@ -68,9 +71,15 @@ function SavedMovies() {
         .deleteMovie(props._id)
         .then(res => {
           const arr = movies.filter(x => x.movieId !== props.movieId);
+          const arr1 = moviesRaw.filter(x => x.movieId !== props.movieId);
           setMovies(arr);
+          setMoviesRaw(arr1);
         })
-        .catch((error) => console.log(error));
+        .catch((err) => {
+          setIsOpen(true);
+          setTextError({title: ERROR_TITLE_DEFAULT, description: err});
+          console.log(err);
+        });
     }
   }
 
@@ -102,7 +111,6 @@ function SavedMovies() {
       }
       
       if (result.length > 0) {
-        console.log(result);
         setIsNotFound(false);
         setMoviesRaw(result);
         setMovies(result.slice(0,slice));
