@@ -1,9 +1,11 @@
-import Header from "../Header/Header";
+import Header from '../Header/Header';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { useContext } from "react";
-import Button from "../Sign/Button";
-import Inbox from "../Inbox/Inbox";
-import { useFormWithValidation } from "../../utils/validator";
+import { useContext } from 'react';
+import Button from '../Sign/Button';
+import Inbox from '../Inbox/Inbox';
+import { useFormWithValidation } from '../../utils/validator';
+import React from 'react';
+import InfoTooltip from '../Popup/Popup';
 
 function ProfileEdit(props) {
   const currentUser = useContext(CurrentUserContext);
@@ -20,8 +22,8 @@ function ProfileEdit(props) {
   return(
     <>
       <Header/>
-      <section className="profile">
-        <h2 className="profile__title">
+      <section className='profile'>
+        <h2 className='profile__title'>
           Редактировать профиль
         </h2>
         <form onSubmit={handleSubmit}>
@@ -33,10 +35,11 @@ function ProfileEdit(props) {
             type={'text'}
             id={`name-input`}
             autoComplete={`off`}
-            value={values.name || currentUser.name  || ''}
+            value={values.name || currentUser.name || ''}
             minLength={4}
             maxLength={20}
           />
+
           <Inbox
             onChange={handleChange}
             placeholder={'E-mail'}
@@ -45,16 +48,24 @@ function ProfileEdit(props) {
             type={'email'}
             id={`email-input`}
             autoComplete={`off`}
-            value={values.email || currentUser.email  || ''}
+            value={values.email || currentUser.email || ''}
           />
 
           <Button
             type='submit'
-            isValid={isValid}
+            isValid={
+              (isValid && values.name !== currentUser.name)
+              || (isValid && values.email !== currentUser.email)
+            }
             class={`button_save`}
             value={`Сохранить`}
           />
         </form>
+        <InfoTooltip 
+        isOpen={props.isOpen}
+        onClose={props.onClose}
+        text={props.text}
+      />
       </section>
     </>
   );

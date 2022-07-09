@@ -2,6 +2,7 @@ import {
   Route,
   Switch,
   useHistory,
+  useLocation,
 } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import Movies from './Movies/Movies';
@@ -13,10 +14,22 @@ import Signup from './Sign/Signup';
 import PageNotFound from './PageNotFound/PageNotFound';
 import Main from './Main/Main';
 import auth from '../utils/MainApi';
-import api from '../utils/MoviesApi';
 import { CurrentUserContext } from '../context/CurrentUserContext';
-import React from 'react';
-import { ERROR_TITLE_DEFAULT } from '../utils/constants';
+import React  from 'react';
+import {
+  ERROR_TITLE_DEFAULT,
+  STORE_TOKEN_NAME,
+  STORE_MOVIES,
+  STORE_SHORT_FILM_NAME,
+  STORE_SHORT_FILM_SAVED_NAME,
+  MOVIES_URL,
+  PROFILE_URL,
+  PROFILE_EDIT_URL,
+  SAVED_MOVIES_URL,
+  MAIN_URL,
+  SIGNIN_URL,
+  SIGNUP_URL,
+} from '../utils/constants';
 
 function App() {
   const history = useHistory();
@@ -24,16 +37,17 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const [textError, setTextError] = React.useState({title: '', description: ''});
+  // const location = useLocation();
 
   function closePopup() {
     setIsOpen(false);
     setTextError({title: '', description: ''});
-  } 
+  }
 
-  const tokenCheck = () => {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
-      auth.checkToken(jwt)
+  function checkToken(jwt) {
+    if (jwt) {
+      auth
+        .checkToken(jwt)
         .then((res) => {
           if (res) {
             setCurrentUser(res);
@@ -44,59 +58,55 @@ function App() {
         .catch(err => {
           console.log('Переданный токен некорректен.');
           setLoggedIn(false);
+          console.log(err);
         });
     }
-  };
-
+  }
   React.useEffect(() => {
-    tokenCheck();
-  }, [loggedIn]);
-
-  React.useEffect(() => {
-    Promise.all([auth.getUser(), api.getMovies()])
-      .then(([userData, movies]) => {
-        setCurrentUser(userData);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    const jwt = localStorage.getItem(STORE_TOKEN_NAME);
+    checkToken(jwt);
   }, []);
+
+  // React.useEffect(() => {
+  //   if (loggedIn) {
+  //     setLoggedIn(true)
+
+  //          history.push("/movies");
+
+  //   } else {
+  //     setLoggedIn(false)
+  //   }
+  // }, [loggedIn]);
 
   function handleSignUp({email, password, name}) {
     auth
       .signUp({email, password, name})
       .then((res) => {
-        history.push('/signin');
+        setCurrentUser(res);
+        setLoggedIn(true);
+        setTextError({
+          title: '', 
+          description: 'Вы успешно зарегистрированы'
+        });
+        setIsOpen(true);
+        setTimeout(() => {
+          handleSignIn({email, password});
+          setIsOpen(false);
+        }, 1500);
+        setTimeout(() => {
+          handleSignIn({email, password});
+        }, 500);         
       })
       .catch((err) => {
-        if (err.status === 400) {
-          setTextError({
-            title: ERROR_TITLE_DEFAULT, 
-            description: 'некорректные данные'
-          });
-          setIsOpen(true);
+        let errorDescription = 'что-то пошло не так...';
+        if (err === 'Ошибка 409') {
+          errorDescription = 'пользователь с такими данными существует'
         }
-        console.log(err);
-      });
-  }
-
-  function handleUpdateUser({email, name}) {
-    auth
-      .patchUser({email, name})
-      .then((res) => {
-        // setIsInfoToolTipPopupOpen(true);
-        // setIsSuccess(true);
-        // console.log(res);
-        // history.push('/signin');
-      })
-      .catch((err) => {
-        if (err.status === 400) {
-          setIsOpen(true);
-          setTextError({
-            title: ERROR_TITLE_DEFAULT, 
-            description: 'некорректные данные'
-          });
-        }
+        setTextError({
+          title: ERROR_TITLE_DEFAULT, 
+          description: errorDescription
+        });
+        setIsOpen(true);
         console.log(err);
       });
   }
@@ -105,11 +115,12 @@ function App() {
     auth
       .signIn({email, password})
       .then((res) => {
-        localStorage.setItem('jwt', res.token);        
         setLoggedIn(true);
-        history.push('/movies');
-        return;
-      })
+        localStorage.setItem(STORE_TOKEN_NAME, res.token);  
+        checkToken(res.token); 
+        
+        // return;
+      }).then(history.push('/movies'))
       .catch((err) => { 
         if (err === 'Ошибка 401') {
           setIsOpen(true);
@@ -122,44 +133,48 @@ function App() {
       });
   }
 
+  function handleUpdateUser({email, name}) {
+    auth
+      .patchUser({email, name})
+      .then((res) => {
+        setTextError({
+          title: '', 
+          description: 'данные успешно обновлены'
+        });
+        setIsOpen(true);
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 2000);   
+
+      })
+      .catch((err) => {
+        if (err.status === 400) {
+          setIsOpen(true);
+          setTextError({
+            title: ERROR_TITLE_DEFAULT, 
+            description: 'некорректные данные'
+          });
+        }
+        console.log(err);
+      });
+  }
+
   function handleLogOut(e) {
     e.preventDefault();
-    localStorage.removeItem('jwt');
+    localStorage.removeItem(STORE_TOKEN_NAME);
+    localStorage.removeItem(STORE_MOVIES);
+    localStorage.removeItem(STORE_SHORT_FILM_NAME);
+    localStorage.removeItem(STORE_SHORT_FILM_SAVED_NAME);
+    localStorage.removeItem('source');
     setLoggedIn(false);
     setCurrentUser({});
-    history.push('/signin');
+    history.push('/');
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
-        <ProtectedRoute 
-          loggedIn={loggedIn}   
-          component={Movies}   
-          path='/movies'
-        />
-        <ProtectedRoute
-          loggedIn={loggedIn}
-          component={Profile}
-          path='/profile'
-          handleLogOut={handleLogOut}
-          
-        />
-        <ProtectedRoute
-          loggedIn={loggedIn}
-          component={ProfileEdit}
-          handleUpdateUser={handleUpdateUser}
-          path='/profile-edit'
-        />
-        <ProtectedRoute
-        loggedIn={loggedIn}
-          component={SavedMovies}
-          path='/saved-movies' 
-        />
-        <Route exact path='/'>
-          <Main/>
-        </Route>
-        <Route exact path='/signin'>
+        <Route exact path={SIGNIN_URL}>
           <Signin 
             signIn={handleSignIn}
             isOpen={isOpen}
@@ -167,7 +182,7 @@ function App() {
             text={textError}
           />
         </Route>
-        <Route exact path='/signup'>
+        <Route exact path={SIGNUP_URL}>
           <Signup 
             signUp={handleSignUp} 
             isOpen={isOpen}
@@ -175,8 +190,38 @@ function App() {
             text={textError}
           />
         </Route>
-        <Route path="*">
-          <PageNotFound/>
+        <ProtectedRoute
+          loggedIn={loggedIn}   
+          component={Movies}   
+          exact path={MOVIES_URL}
+        />
+        <ProtectedRoute
+          loggedIn={loggedIn}
+          component={SavedMovies}
+          exact path={SAVED_MOVIES_URL} 
+        />
+        <ProtectedRoute
+          loggedIn={loggedIn}
+          component={Profile}
+          exact path={PROFILE_URL}
+          handleLogOut={handleLogOut}
+        />
+        <ProtectedRoute
+          loggedIn={loggedIn}
+          component={ProfileEdit}
+          handleUpdateUser={handleUpdateUser}
+          isOpen={isOpen}
+          onClose={closePopup}
+          text={textError}
+          exact path={PROFILE_EDIT_URL}
+        />
+
+        <Route exact path={MAIN_URL}>
+          <Main loggedIn={loggedIn}/>
+        </Route>
+
+        <Route exact path="*">
+          <PageNotFound />
         </Route> 
       </Switch>
     </CurrentUserContext.Provider>

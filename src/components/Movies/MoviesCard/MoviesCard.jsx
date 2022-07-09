@@ -1,11 +1,40 @@
 import React from 'react';
+import {
+  useLocation,
+} from 'react-router-dom';
 
 function MovieCard(props) {
+  const location = useLocation();
+
+  const movieClass = () => {
+    if (location.pathname  === '/movies') {
+      if (props.isLiked) {
+        return 'button_liked button_disabled'
+      } 
+      return 'button_like';
+    }
+  }
+  const savedMovieClass = () => {
+    if (location.pathname  === '/saved-movies') {
+      if (props.isLiked) {
+        return 'button_dislike '
+      } 
+      return '';
+    }
+  }
+
+//   ${props.isLiked && location.pathname === '/saved-movies'
+//   ? 'button_dislike' 
+//   : 'button_dislike'
+// }
+
   return(
     <div className="movie-card">
       <a href={props.trailerLink} target='_blank' rel="noreferrer">
         <img
-          src={`${props.image.url ? `https://api.nomoreparties.co${props.image.url}` : props.thumbnail }`}
+          src={`${props.image.url 
+            ? `https://api.nomoreparties.co${props.image.url}` 
+            : props.thumbnail }`}
           alt={props.image.alternativeText} 
           className="movie-card__image"
         />
@@ -15,11 +44,18 @@ function MovieCard(props) {
           {props.nameRU}
         </p>
         <button
-          className={`button
-            ${props.isLiked 
-              ? 'button_liked' 
-              : 'button_like'
-            }`
+          disabled={props.isLiked && location.pathname === '/movies'}
+          className={`button ${movieClass() ? movieClass() : ''} 
+                             ${savedMovieClass() ? savedMovieClass() : ''}
+
+
+
+
+
+
+            
+            `
+            
           }
           onClick={() => props.handleLikeClick(props)}/>
       </div>      

@@ -1,9 +1,13 @@
 import { links } from "./links";
+import Header from "../../Header/Header";
 
-function Promo() {
+function Promo(props) {
   return(
     <section className="promo">
-      <div className="promo__header">
+      {props.loggedIn 
+        ? <Header />
+        : <>
+              <div className="promo__header">
         <a className="promo__logo" href="/">      
           <div className="promo__icon">
           </div>
@@ -19,9 +23,8 @@ function Promo() {
       </div>
       <div className="promo__cover">
       <h1 className="promo__title">
-          Учебный проект студента факультета Веб-разработки.
-        </h1>
-
+        Учебный проект студента факультета Веб-разработки.
+      </h1>
         <ul className="promo__tabs">
           {links.map((link, index) => 
             <li className="promo__tab" key={index}>
@@ -32,6 +35,11 @@ function Promo() {
           )}
         </ul>
       </div>
+        </>
+        
+        }
+      
+
 
 
     </section>

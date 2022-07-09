@@ -5,10 +5,10 @@ import Promo from "./Promo/Promo";
 import Footer from "../Footer/Footer";
 import Portfolio from "./Portfolio/Portfolio";
 
-function Main() {
+function Main(props) {
   return(
     <>
-      <Promo/>
+      <Promo loggedIn={props.loggedIn}/>
       <AboutProject/>
       <Techs/>
       <AboutMe/>

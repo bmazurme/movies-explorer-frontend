@@ -68,7 +68,11 @@ export class Auth {
   checkToken(token) {
     return fetch(`${this._options.baseUrl}/users/me`, {
       method: 'GET',
-      headers: this._options.headers
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      }
+      // headers: this._options.headers
     })
     .then(this._checkResponse);
   };
@@ -76,8 +80,10 @@ export class Auth {
   getMovies() {
     return fetch(`${this._options.baseUrl}/movies`, {
       method: 'GET',
-      headers: this._options.headers
-    })
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      }})
     .then(this._checkResponse);
   }
 
@@ -93,7 +99,10 @@ export class Auth {
   deleteMovie(id) {
     return fetch(`${this._options.baseUrl}/movies/${id}`, {
       method: 'DELETE',
-      headers: this._options.headers,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
     })
     .then(res => this._checkResponse(res));
   }

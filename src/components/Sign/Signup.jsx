@@ -23,9 +23,11 @@ function Signup(props) {
         </h2>
         <form onSubmit={handleSubmit}>
           <Inbox
+            required={true}
             onChange={handleChange}
             name={'name'}
-            placeholder={'Имя'}
+            placeholder={'введите ваше имя'}
+            label={'Имя'}
             type={'text'}
             id={`name-input`}
             autoComplete={`off`}
@@ -35,9 +37,11 @@ function Signup(props) {
             maxLength={20}
           />
           <Inbox
+            required={true}
             onChange={handleChange}
             name={'email'}
-            placeholder={'E-mail'}
+            placeholder={'ваш e-mail в формате pochta@mail.com'}
+            label={'E-mail'}
             type={'email'}
             id={`email-input`}
             autoComplete={`off`}
@@ -45,8 +49,10 @@ function Signup(props) {
             errors={errors}
           />
           <Inbox
+            required={true}
             onChange={handleChange}
-            placeholder={'Пароль'}
+            placeholder={'пароль не менее 6 символов'}
+            label={'Пароль'}
             name={'password'}
             type={'password'}
             id={`password-input`}

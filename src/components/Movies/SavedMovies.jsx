@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SearchForm from './SearchForm/SearchForm';
@@ -11,15 +11,23 @@ import auth from '../../utils/MainApi';
 import findMovie from './handles/findFilms';
 import combineSavedMovies from './handles/combineSavedMovies';
 import { useWindowDimensions, getVisualProps } from './handles/getWindowDimensions';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 import {
   ERROR_TITLE_NOT_FOUND,
   ERROR_DESCRIPTION_NOT_FOUND,
   ERROR_TITLE_DEFAULT,
+  SHORT_MOVIE_DURATION,
+  STORE_SHORT_FILM_SAVED_NAME,
+  STORE_TOKEN_NAME,
+  STORE_MOVIES
 } from '../../utils/constants';
 
+// const STORE_MOVIES_SAVED_NAME = '';
+
+
 function SavedMovies() {
-  let settings = JSON.parse(localStorage.getItem('settings')) 
-    ? JSON.parse(localStorage.getItem('settings')) 
+  let settings = JSON.parse(localStorage.getItem(STORE_SHORT_FILM_SAVED_NAME)) 
+    ? JSON.parse(localStorage.getItem(STORE_SHORT_FILM_SAVED_NAME)) 
     : false;
   const [data, setData] = React.useState({
     searchWord: '',
@@ -35,6 +43,7 @@ function SavedMovies() {
   const [slice, setSlice] = React.useState(curr.slice);
   const [isOpen, setIsOpen] = React.useState(false);
   const [textError, setTextError] = React.useState({title: '', description: ''});
+  const currentUser = useContext(CurrentUserContext);
 
   function closePopup() {
     setIsOpen(false);
@@ -46,9 +55,9 @@ function SavedMovies() {
 
   function handleMoreClick() {
     if (data.shortFilm) {
-      setMovies(moviesRaw.filter(x => x.duration <= 40).slice(0, slice + curr.step));
+      setMovies(moviesRaw.filter(x => x.duration <= SHORT_MOVIE_DURATION).slice(0, slice + curr.step));
       setSlice(slice + curr.step);
-      if (slice + curr.step >= moviesRaw.filter(x => x.duration <= 40).length) {
+      if (slice + curr.step >= moviesRaw.filter(x => x.duration <= SHORT_MOVIE_DURATION).length) {
         setIsMore(false);
       }
     } else {
@@ -74,6 +83,14 @@ function SavedMovies() {
           const arr1 = moviesRaw.filter(x => x.movieId !== props.movieId);
           setMovies(arr);
           setMoviesRaw(arr1);
+          const _movies = JSON.parse(localStorage.getItem(STORE_MOVIES));
+          const newArr = _movies.map(x => {
+            console.log(`${x._id} === ${(props._id)}`);
+            return (x._id === (props._id)) 
+              ? {...x, isLiked: false} 
+              : x
+            })
+          localStorage.setItem(STORE_MOVIES, JSON.stringify(newArr));
         })
         .catch((err) => {
           setIsOpen(true);
@@ -85,12 +102,12 @@ function SavedMovies() {
 
   function handlerSwitchClick() {
     setData({...data, shortFilm: !data.shortFilm,});
-    localStorage.setItem('settings', JSON.stringify(!data.shortFilm));
+    localStorage.setItem(STORE_SHORT_FILM_SAVED_NAME, JSON.stringify(!data.shortFilm));
     setSlice(curr.slice);
 
     if (!data.shortFilm) {
-      setMovies(moviesRaw.filter(x => x.duration <= 40).slice(0, slice));
-      (slice + curr.step >= moviesRaw.filter(x => x.duration <= 40).length) 
+      setMovies(moviesRaw.filter(x => x.duration <=SHORT_MOVIE_DURATION).slice(0, slice));
+      (slice + curr.step >= moviesRaw.filter(x => x.duration <= SHORT_MOVIE_DURATION).length) 
         ? setIsMore(false)
         : setIsMore(true);
     } else {
@@ -116,7 +133,7 @@ function SavedMovies() {
         setMovies(result.slice(0,slice));
         
         if (data.shortFilm) {
-          setMovies(result.filter(x => x.duration <= 40).slice(0,slice));
+          setMovies(result.filter(x => x.duration <= SHORT_MOVIE_DURATION).slice(0,slice));
           if (slice + curr.step >= result.slice(0,slice).length) {
             setIsMore(false);
           } 
@@ -137,15 +154,17 @@ function SavedMovies() {
 
   React.useEffect(() => {
     setIsLoading(true);
-    auth.getMovies()
-      .then((moviesDTO) => {
-        const _movies = combineSavedMovies(moviesDTO);
+    const jwt = localStorage.getItem(STORE_TOKEN_NAME);
+
+    auth.getMovies(jwt)
+      .then((moviesDTO) => {        
+        const _movies = combineSavedMovies(moviesDTO.filter(x => x.owner === currentUser._id));
         setSource(_movies);
         setMoviesRaw(_movies);
         setMovies(_movies.slice(0,slice));
 
         if (data.shortFilm) {
-          setMovies(_movies.filter(x => x.duration <= 40).slice(0,slice));
+          setMovies(_movies.filter(x => x.duration <= SHORT_MOVIE_DURATION).slice(0,slice));
           if (slice + curr.step >= _movies.slice(0,slice).length) {
             setIsMore(false);
           }

@@ -8,9 +8,10 @@ function findMovie(data, list) {
     .filter((movie) => {
       return (checkValue(movie.nameRU, find) 
         || checkValue(movie.nameEN, find) 
-        || checkValue(movie.director, find) 
-        || checkValue(movie.country, find) 
-        || checkValue(movie.year, find));
+        // || checkValue(movie.director, find) 
+        // || checkValue(movie.country, find) 
+        // || checkValue(movie.year, find)
+        );
     });
   return result;
 }

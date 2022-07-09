@@ -1,8 +1,10 @@
+import { NavLink } from "react-router-dom";
+
 function Logo() {
   return(
-    <a className="logo" href="/">      
+    <NavLink className="logo" to="/">      
       <div className="logo__icon"/>
-    </a>
+    </NavLink>
   );
 }
 

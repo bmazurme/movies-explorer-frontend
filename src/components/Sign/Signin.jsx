@@ -24,17 +24,18 @@ function Signin(props) {
         <form onSubmit={handleSubmit}>
           <Inbox
             onChange={handleChange}
-            placeholder={'E-mail'}
+            label={'E-mail'}
             errors={errors}
             name={'email'}
             type={'email'}
             id={`email-input`}
             autoComplete={`off`}
             value={values.email || ''}
+            required={true}
           />
           <Inbox
             onChange={handleChange}
-            placeholder={'Пароль'}
+            label={'Пароль'}
             errors={errors}
             name={'password'}
             type={'password'}
@@ -43,6 +44,7 @@ function Signin(props) {
             value={values.password || ''}
             minLength={6}
             maxLength={20}
+            required={true}
           />
           <Button
             isValid={isValid}

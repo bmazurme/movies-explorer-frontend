@@ -2,12 +2,12 @@ function Inbox(props) {
   return(
     <div className="inbox" >
       <label className="inbox__label">
-        {props.placeholder}
+        {props.label}
       </label>
       <input
         name={props.name}
+        placeholder={props.placeholder}
         onChange={props.onChange}
-        // pattern={props.pattern ? props.pattern : ''}
         minLength={props.minLength ? props.minLength : ''}
         maxLength={props.maxLength ? props.maxLength : ''}
         required={props.required}
@@ -17,6 +17,7 @@ function Inbox(props) {
         autoComplete={props.autoComplete}
         value={props.value}
       />
+
       <span className={`${props.label}-input-error inbox__label_error`}>
         {props.errors ? props.errors[props.name] : ''}
       </span>
