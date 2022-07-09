@@ -4,20 +4,28 @@ import { useContext } from 'react';
 import Button from '../Sign/Button';
 import Inbox from '../Inbox/Inbox';
 import { useFormWithValidation } from '../../utils/validator';
-import React from 'react';
+import {useEffect} from 'react';
 import InfoTooltip from '../Popup/Popup';
 
 function ProfileEdit(props) {
   const currentUser = useContext(CurrentUserContext);
-  const {values, handleChange, errors, isValid} = useFormWithValidation();
+  const {values, handleChange, errors, isValid} = useFormWithValidation({
+    email: currentUser.email,
+    name: currentUser.name 
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
     props.handleUpdateUser({
-      email: values.email || currentUser.email,
-      name: values.name || currentUser.name 
+      email: values.email,
+      name: values.name
     })
   }
+
+  useEffect(() => {
+    values.name = currentUser.name;
+    values.email = currentUser.email;
+  }, [values.name, values.email]);
 
   return(
     <>

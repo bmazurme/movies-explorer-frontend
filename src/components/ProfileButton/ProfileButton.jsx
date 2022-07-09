@@ -1,18 +1,18 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 function ProfileButton(props) {
   return(
     <NavLink 
       className={`profile-button
-      ${props.isOpen
-        ? 'profile-button_opened'
-        : ''}
-      `} 
-      to="/profile">
-      <p className="profile-button__label" >
+        ${props.isOpen
+          ? 'profile-button_opened'
+          : ''}
+        `} 
+      to='/profile'>
+      <p className='profile-button__label' >
         Аккаунт
       </p>
-      <div className="profile-button__icon"></div>
+      <div className='profile-button__icon'></div>
     </NavLink>
   );
 }

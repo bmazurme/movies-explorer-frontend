@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 function Switcher(props) {
   return(
     <button
-      type="button"
+      type='button'
       className={`button  
         ${props.shortFilm 
           ? 'switcher__button_on' 

@@ -21,12 +21,12 @@ import {
   SHORT_MOVIE_DURATION,
   STORE_SHORT_FILM_NAME,
   STORE_MOVIES,
-  STORE_TOKEN_NAME
+  STORE_TOKEN_NAME,
+  STORE_SOURCE
 } from '../../utils/constants';
 
 function Movies(props) {
   const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser);
   let settings = JSON.parse(localStorage.getItem(STORE_SHORT_FILM_NAME)) 
     ? JSON.parse(localStorage.getItem(STORE_SHORT_FILM_NAME)) 
     : false;
@@ -45,7 +45,6 @@ function Movies(props) {
   const [slice, setSlice] = React.useState(curr.slice);
   const [isOpen, setIsOpen] = React.useState(false);
   const [textError, setTextError] = React.useState({title: '', description: ''});
-
 
   function closePopup() {
     setIsOpen(false);
@@ -78,7 +77,6 @@ function Movies(props) {
       auth
         .postMovie(movie)
         .then(res => {
-          console.log(res);
           const arr = movies.map(x => {
             if (x.id === props.id) {
               return {
@@ -130,7 +128,6 @@ function Movies(props) {
       if (result.length === 0) {
         setIsNotFound(true);
         setIsMore(false);
-        
       }
       
       if (result.length > 0) {
@@ -159,21 +156,18 @@ function Movies(props) {
     });
   }
 
-  
-     
   React.useEffect(() => {
     setIsLoading(true);
     const jwt = localStorage.getItem(STORE_TOKEN_NAME);
-    const _source = localStorage.getItem('source');
-    const _m = localStorage.getItem('movies');
+    const moviesSource = localStorage.getItem(STORE_SOURCE);
+    const moviesFromStore = localStorage.getItem(STORE_MOVIES);
 
-    if (_source) {
-      // localStorage.setItem('source', JSON.stringify(_source));
-      const data = JSON.parse(_source);
+    if (moviesSource) {
+      const data = JSON.parse(moviesSource);
       setSource(data); 
       let savedMovies = [];
-      if (_m) {
-        savedMovies = JSON.parse(_m);
+      if (moviesFromStore) {
+        savedMovies = JSON.parse(moviesFromStore);
         setMoviesRaw(savedMovies); //  -> для отображения берем из стора - записываем после поиска
         setMovies(savedMovies);
       }
@@ -188,56 +182,34 @@ function Movies(props) {
           setIsMore(false);
         }
       }
-
-
       setIsLoading(false);
-
     } else {
       Promise.all([ api.getMovies(), auth.getMovies(jwt)])
-      .then(([moviesDTO, myMoviesDTO]) => {
-        let savedMovies = [];
-        // const localData = localStorage.getItem(STORE_MOVIES);
-        console.log(currentUser);
-        console.log(myMoviesDTO);
-        console.log(myMoviesDTO.filter(x => x.owner === currentUser._id));
-        
-
-
-        const _movies = combineMovies(moviesDTO, myMoviesDTO.filter(x => x.owner === currentUser?._id));//;
-        //console.log(_movies);
-        localStorage.setItem('source', JSON.stringify(_movies));
-        // console.log(_movies);
-        setSource(_movies); // -> полученные с сервера не трогаем - используем для поиска
-        //const savedMovies = JSON.parse(localStorage.getItem('movies')); // читаем сохраненные
-        
-        // if (localData) {
-        //   savedMovies = JSON.parse(localData);
-        //   setMoviesRaw(savedMovies); //  -> для отображения берем из стора - записываем после поиска
-        //   setMovies(savedMovies);
-        // }
-        
-        if (data.shortFilm) {
-          setMovies(savedMovies.filter(x => x.duration <= SHORT_MOVIE_DURATION).slice(0,slice));
-          if (slice + curr.step >= savedMovies.slice(0,slice).length) {
-            setIsMore(false);
-          } 
-        } else {
-          setMovies(savedMovies.slice(0,slice));
-          if (slice + curr.step >= savedMovies.length) {
-
-            setIsMore(false);
+        .then(([moviesDTO, myMoviesDTO]) => {
+          let savedMovies = [];
+          const combinedMovies = combineMovies(moviesDTO, myMoviesDTO.filter(x => x.owner === currentUser?._id));//;
+          localStorage.setItem(STORE_SOURCE, JSON.stringify(combinedMovies));
+          setSource(combinedMovies); // -> полученные с сервера не трогаем - используем для поиска
+          
+          if (data.shortFilm) {
+            setMovies(savedMovies.filter(x => x.duration <= SHORT_MOVIE_DURATION).slice(0,slice));
+            if (slice + curr.step >= savedMovies.slice(0,slice).length) {
+              setIsMore(false);
+            } 
+          } else {
+            setMovies(savedMovies.slice(0,slice));
+            if (slice + curr.step >= savedMovies.length) {
+              setIsMore(false);
+            }
           }
-        }
-        setIsLoading(false);
-      })
-      .catch(err => {
-        setIsOpen(true);
-        setTextError({title: ERROR_TITLE_DEFAULT, description: err});
-        console.log(err);
-      });
+          setIsLoading(false);
+        })
+        .catch(err => {
+          setIsOpen(true);
+          setTextError({title: ERROR_TITLE_DEFAULT, description: err});
+          console.log(err);
+        });
     }
-
-    
   }, []);
 
   return( 

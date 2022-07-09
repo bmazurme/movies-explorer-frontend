@@ -19,11 +19,9 @@ import {
   SHORT_MOVIE_DURATION,
   STORE_SHORT_FILM_SAVED_NAME,
   STORE_TOKEN_NAME,
-  STORE_MOVIES
+  STORE_MOVIES,
+  STORE_SOURCE
 } from '../../utils/constants';
-
-// const STORE_MOVIES_SAVED_NAME = '';
-
 
 function SavedMovies() {
   let settings = JSON.parse(localStorage.getItem(STORE_SHORT_FILM_SAVED_NAME)) 
@@ -74,6 +72,17 @@ function SavedMovies() {
     setData({...data, [name]: value,});
   }
 
+  function removeLikeFromStore(data, id, storeName) {
+    if (data) {
+      const arr = data.map(x => {
+        return (x._id === id) 
+          ? {...x, isLiked: false} 
+          : x
+        })
+      localStorage.setItem(storeName, JSON.stringify(arr));
+    }
+  }
+
   function handleLikeClick(props) {
     if (props.isLiked) {
       auth
@@ -84,13 +93,9 @@ function SavedMovies() {
           setMovies(arr);
           setMoviesRaw(arr1);
           const _movies = JSON.parse(localStorage.getItem(STORE_MOVIES));
-          const newArr = _movies.map(x => {
-            console.log(`${x._id} === ${(props._id)}`);
-            return (x._id === (props._id)) 
-              ? {...x, isLiked: false} 
-              : x
-            })
-          localStorage.setItem(STORE_MOVIES, JSON.stringify(newArr));
+          const sourceMovies = JSON.parse(localStorage.getItem(STORE_SOURCE));
+          removeLikeFromStore(_movies, props._id, STORE_MOVIES);
+          removeLikeFromStore(sourceMovies, props._id, STORE_SOURCE);
         })
         .catch((err) => {
           setIsOpen(true);
@@ -148,14 +153,12 @@ function SavedMovies() {
       reject((err)=> {
         setIsOpen(true);
         setTextError({title: ERROR_TITLE_DEFAULT, description: err});});
-      // setTimeout(()=>resolve(setIsLoading(false)), 1000)  
     });
   }
 
   React.useEffect(() => {
     setIsLoading(true);
     const jwt = localStorage.getItem(STORE_TOKEN_NAME);
-
     auth.getMovies(jwt)
       .then((moviesDTO) => {        
         const _movies = combineSavedMovies(moviesDTO.filter(x => x.owner === currentUser._id));

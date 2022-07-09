@@ -1,4 +1,4 @@
-import { MOVIE_URL } from "./constants";
+import { MOVIE_URL } from './constants';
 
 export class Api {
   constructor(options) {

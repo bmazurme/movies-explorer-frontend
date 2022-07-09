@@ -15,13 +15,14 @@ import PageNotFound from './PageNotFound/PageNotFound';
 import Main from './Main/Main';
 import auth from '../utils/MainApi';
 import { CurrentUserContext } from '../context/CurrentUserContext';
-import React  from 'react';
+import React from 'react';
 import {
   ERROR_TITLE_DEFAULT,
   STORE_TOKEN_NAME,
   STORE_MOVIES,
   STORE_SHORT_FILM_NAME,
   STORE_SHORT_FILM_SAVED_NAME,
+  STORE_SOURCE,
   MOVIES_URL,
   PROFILE_URL,
   PROFILE_EDIT_URL,
@@ -29,6 +30,7 @@ import {
   MAIN_URL,
   SIGNIN_URL,
   SIGNUP_URL,
+  PATHS
 } from '../utils/constants';
 
 function App() {
@@ -36,12 +38,12 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
-  const [textError, setTextError] = React.useState({title: '', description: ''});
-  // const location = useLocation();
+  const [textMessage, setTextMessage] = React.useState({title: '', description: ''});
+  const location = useLocation();
 
   function closePopup() {
     setIsOpen(false);
-    setTextError({title: '', description: ''});
+    setTextMessage({title: '', description: ''});
   }
 
   function checkToken(jwt) {
@@ -52,7 +54,15 @@ function App() {
           if (res) {
             setCurrentUser(res);
             setLoggedIn(true);
-            history.push('/movies');
+            PATHS.forEach(path => {
+              if (location.pathname === path) {
+                history.push(location.pathname);
+              }
+            });
+            if (location.pathname === SIGNIN_URL 
+              || location.pathname === SIGNUP_URL) {
+                history.push(MOVIES_URL);
+            }
           }
         })
         .catch(err => {
@@ -67,24 +77,13 @@ function App() {
     checkToken(jwt);
   }, []);
 
-  // React.useEffect(() => {
-  //   if (loggedIn) {
-  //     setLoggedIn(true)
-
-  //          history.push("/movies");
-
-  //   } else {
-  //     setLoggedIn(false)
-  //   }
-  // }, [loggedIn]);
-
   function handleSignUp({email, password, name}) {
     auth
       .signUp({email, password, name})
       .then((res) => {
         setCurrentUser(res);
         setLoggedIn(true);
-        setTextError({
+        setTextMessage({
           title: '', 
           description: 'Вы успешно зарегистрированы'
         });
@@ -102,7 +101,7 @@ function App() {
         if (err === 'Ошибка 409') {
           errorDescription = 'пользователь с такими данными существует'
         }
-        setTextError({
+        setTextMessage({
           title: ERROR_TITLE_DEFAULT, 
           description: errorDescription
         });
@@ -118,16 +117,14 @@ function App() {
         setLoggedIn(true);
         localStorage.setItem(STORE_TOKEN_NAME, res.token);  
         checkToken(res.token); 
-        
-        // return;
-      }).then(history.push('/movies'))
+      }).then(history.push(MOVIES_URL))
       .catch((err) => { 
         if (err === 'Ошибка 401') {
           setIsOpen(true);
-          setTextError({
+          setTextMessage({
             title: ERROR_TITLE_DEFAULT, 
-            description: 'неправильный логин или пароль'}
-            );
+            description: 'неправильный логин или пароль'
+          });
         }
         console.log(err);
       });
@@ -137,7 +134,7 @@ function App() {
     auth
       .patchUser({email, name})
       .then((res) => {
-        setTextError({
+        setTextMessage({
           title: '', 
           description: 'данные успешно обновлены'
         });
@@ -145,12 +142,11 @@ function App() {
         setTimeout(() => {
           setIsOpen(false);
         }, 2000);   
-
       })
       .catch((err) => {
         if (err.status === 400) {
           setIsOpen(true);
-          setTextError({
+          setTextMessage({
             title: ERROR_TITLE_DEFAULT, 
             description: 'некорректные данные'
           });
@@ -165,10 +161,10 @@ function App() {
     localStorage.removeItem(STORE_MOVIES);
     localStorage.removeItem(STORE_SHORT_FILM_NAME);
     localStorage.removeItem(STORE_SHORT_FILM_SAVED_NAME);
-    localStorage.removeItem('source');
+    localStorage.removeItem(STORE_SOURCE);
     setLoggedIn(false);
     setCurrentUser({});
-    history.push('/');
+    history.push(MAIN_URL);
   }
 
   return (
@@ -179,7 +175,7 @@ function App() {
             signIn={handleSignIn}
             isOpen={isOpen}
             onClose={closePopup}
-            text={textError}
+            text={textMessage}
           />
         </Route>
         <Route exact path={SIGNUP_URL}>
@@ -187,7 +183,7 @@ function App() {
             signUp={handleSignUp} 
             isOpen={isOpen}
             onClose={closePopup}
-            text={textError}
+            text={textMessage}
           />
         </Route>
         <ProtectedRoute
@@ -212,15 +208,13 @@ function App() {
           handleUpdateUser={handleUpdateUser}
           isOpen={isOpen}
           onClose={closePopup}
-          text={textError}
+          text={textMessage}
           exact path={PROFILE_EDIT_URL}
         />
-
         <Route exact path={MAIN_URL}>
           <Main loggedIn={loggedIn}/>
         </Route>
-
-        <Route exact path="*">
+        <Route exact path='*'>
           <PageNotFound />
         </Route> 
       </Switch>

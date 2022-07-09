@@ -1,7 +1,7 @@
 function Inbox(props) {
   return(
-    <div className="inbox" >
-      <label className="inbox__label">
+    <div className='inbox' >
+      <label className='inbox__label'>
         {props.label}
       </label>
       <input

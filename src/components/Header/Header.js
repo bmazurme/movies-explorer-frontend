@@ -1,7 +1,6 @@
-import Logo from "../Logo/Logo";
-import Navigation from "../Navigation/Navigation";
-import React from "react";
-
+import Logo from '../Logo/Logo';
+import Navigation from '../Navigation/Navigation';
+import React from 'react';
 
 function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -9,7 +8,7 @@ function Header() {
     setIsOpen(!isOpen);
   }
   return(
-    <section className="header">
+    <section className='header'>
       <Logo/>
       <Navigation
         isOpen={isOpen}

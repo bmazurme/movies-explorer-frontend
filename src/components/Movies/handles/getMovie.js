@@ -1,4 +1,4 @@
-import { MOVIE_URL, DEFAULT_IMG } from "../../../utils/constants";
+import { MOVIE_URL, DEFAULT_IMG } from '../../../utils/constants';
 
 function getMovie(props) {
   const movie = {    

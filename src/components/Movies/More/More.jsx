@@ -1,10 +1,10 @@
 function More(props) {
   return(
-    <div className="more">
+    <div className='more'>
       <button
         onClick={props.handleMoreClick}
-        type="button"
-        className="button button_more">
+        type='button'
+        className='button button_more'>
           Еще
       </button>
     </div>

@@ -1,4 +1,4 @@
-import { AUTH_URL } from "./constants";
+import { AUTH_URL } from './constants';
 
 export class Auth {
   constructor(options) {
@@ -14,10 +14,10 @@ export class Auth {
 
   signUp({email, password, name}) {
     return fetch(`${this._options.baseUrl}/signup`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email,
@@ -30,9 +30,9 @@ export class Auth {
   
   signIn({email, password}) {
     return fetch(`${this._options.baseUrl}/signin`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: email,
@@ -42,7 +42,7 @@ export class Auth {
     .then(this._checkResponse)
       .then((data) => {
         if (data.token) {
-          localStorage.setItem("jwt", data.token);
+          localStorage.setItem('jwt', data.token);
           return data;
         }
       });
@@ -56,7 +56,6 @@ export class Auth {
   }
 
   patchUser(user) {
-    console.log(user)
     return fetch(`${this._options.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._options.headers,
@@ -72,7 +71,6 @@ export class Auth {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       }
-      // headers: this._options.headers
     })
     .then(this._checkResponse);
   };

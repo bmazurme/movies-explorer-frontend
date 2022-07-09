@@ -1,10 +1,10 @@
-import Logo from "../Logo/Logo";
-import Inbox from "../Inbox/Inbox";
-import Button from "./Button";
-import SignFooter from "./SignFooter";
-import React from "react";
-import { useFormWithValidation } from "../../utils/validator";
-import InfoTooltip from "../Popup/Popup";
+import Logo from '../Logo/Logo';
+import Inbox from '../Inbox/Inbox';
+import Button from './Button';
+import SignFooter from './SignFooter';
+import React from 'react';
+import { useFormWithValidation } from '../../utils/validator';
+import InfoTooltip from '../Popup/Popup';
 
 function Signup(props) {
   const {values, handleChange, errors, isValid} = useFormWithValidation();
@@ -15,10 +15,10 @@ function Signup(props) {
   }
 
   return(
-    <section className="sign">
-      <div className="container">
+    <section className='sign'>
+      <div className='container'>
         <Logo/>
-        <h2 className="sign__title">
+        <h2 className='sign__title'>
           Добро пожаловать!
         </h2>
         <form onSubmit={handleSubmit}>

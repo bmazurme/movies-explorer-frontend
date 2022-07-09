@@ -1,8 +1,8 @@
 function Tag(props) {
   return(
-    <li className="techs__item">
+    <li className='techs__item'>
       {props.tag}
-  </li>
+    </li>
   );
 }
 

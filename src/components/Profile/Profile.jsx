@@ -1,8 +1,8 @@
-import Header from "../Header/Header";
-import Field from "./Field";
+import Header from '../Header/Header';
+import Field from './Field';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Profile(props) {
   const currentUser = useContext(CurrentUserContext);
@@ -10,13 +10,13 @@ function Profile(props) {
   return(
     <>
       <Header/>
-      <section className="profile">
-        <h2 className="profile__title">
+      <section className='profile'>
+        <h2 className='profile__title'>
           Привет, {currentUser.name}!
         </h2>
         <Field label={'Имя'} value={currentUser.name}/>
         <Field label={'E-mail'} value={currentUser.email}/>
-        <ul className="profile__links">
+        <ul className='profile__links'>
           <li>
             <NavLink className='profile__link' to='/profile-edit'>
               Редактировать

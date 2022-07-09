@@ -3,11 +3,6 @@ import { NavLink } from 'react-router-dom';
 import React from 'react';
 
 function Navigation(props) {
-  const [value, setValue] = React.useState(1);
-  const handleChange = (newValue) => {
-    setValue(newValue);
-  };
-
   return(
     <>
       <div className={`navigation 
@@ -16,7 +11,6 @@ function Navigation(props) {
         : ''}`}
       >
         <ul
-          onClick={props.handlerClick} 
           className={`navigation__links 
             ${props.isOpen 
               ? 'navigation__links_opened' 
@@ -24,22 +18,22 @@ function Navigation(props) {
             }
         >
           <li>
-            <NavLink className={`navigation__link navigation__link_home ${value === 0 ? 'navigation__link_active' : ''}`} 
-              onClick={() => handleChange(0)}
+            <NavLink 
+              className={`navigation__link navigation__link_home`} 
               to='/'>
                 Главная
               </NavLink>
           </li>
           <li>
-            <NavLink className={`navigation__link ${value === 1 ? 'navigation__link_active' : ''}`}
-              onClick={() => handleChange(1)}
+            <NavLink 
+              className={`navigation__link`}
               to='/movies'>
                 Фильмы
               </NavLink>
           </li>
           <li>
-            <NavLink className={`navigation__link ${value === 2 ? 'navigation__link_active' : ''}`}
-              onClick={() => handleChange(2)}
+            <NavLink 
+              className={`navigation__link`}
               to='/saved-movies'>
                 Сохранённые фильмы
             </NavLink>

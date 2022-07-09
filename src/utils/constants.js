@@ -11,6 +11,7 @@ export const STORE_SHORT_FILM_NAME = 'short-film';
 export const STORE_SHORT_FILM_SAVED_NAME = 'short-film-saved';
 export const STORE_MOVIES = 'movies';
 export const STORE_TOKEN_NAME = 'jwt';
+export const STORE_SOURCE = 'source';
 
 export const MOVIES_URL = '/movies';
 export const PROFILE_URL = '/profile';
@@ -19,3 +20,5 @@ export const SAVED_MOVIES_URL = '/saved-movies';
 export const MAIN_URL = '/';
 export const SIGNIN_URL = '/signin';
 export const SIGNUP_URL = '/signup';
+
+export const PATHS = ['/', '/movies', '/saved-movies', '/profile-edit', '/profile'];
