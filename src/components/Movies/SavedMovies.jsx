@@ -161,19 +161,19 @@ function SavedMovies() {
     const jwt = localStorage.getItem(STORE_TOKEN_NAME);
     auth.getMovies(jwt)
       .then((moviesDTO) => {        
-        const _movies = combineSavedMovies(moviesDTO.filter(x => x.owner === currentUser._id));
-        setSource(_movies);
-        setMoviesRaw(_movies);
-        setMovies(_movies.slice(0,slice));
+        const combinedMovies = combineSavedMovies(moviesDTO.filter(x => x.owner === currentUser._id));
+        setSource(combinedMovies);
+        setMoviesRaw(combinedMovies);
+        setMovies(combinedMovies.slice(0,slice));
 
         if (data.shortFilm) {
-          setMovies(_movies.filter(x => x.duration <= SHORT_MOVIE_DURATION).slice(0,slice));
-          if (slice + curr.step >= _movies.slice(0,slice).length) {
+          setMovies(combinedMovies.filter(x => x.duration <= SHORT_MOVIE_DURATION).slice(0,slice));
+          if (slice + curr.step >= combinedMovies.slice(0,slice).length) {
             setIsMore(false);
           }
         } else {
-          setMovies(_movies.slice(0,slice));
-          if (slice + curr.step >= _movies.length) {
+          setMovies(combinedMovies.slice(0,slice));
+          if (slice + curr.step >= combinedMovies.length) {
             setIsMore(false);
           }
         }

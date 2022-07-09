@@ -80,22 +80,20 @@ function App() {
   function handleSignUp({email, password, name}) {
     auth
       .signUp({email, password, name})
-      .then((res) => {
+      .then(async (res) => {
         setCurrentUser(res);
-        setLoggedIn(true);
         setTextMessage({
           title: '', 
           description: 'Вы успешно зарегистрированы'
         });
         setIsOpen(true);
-        setTimeout(() => {
-          handleSignIn({email, password});
-          setIsOpen(false);
-        }, 1500);
-        setTimeout(() => {
-          handleSignIn({email, password});
-        }, 500);         
       })
+      .then(()=>
+        setTimeout(() => {
+          setIsOpen(false);
+          handleSignIn({email, password})
+        }, 1500) 
+      )
       .catch((err) => {
         let errorDescription = 'что-то пошло не так...';
         if (err === 'Ошибка 409') {
@@ -117,7 +115,8 @@ function App() {
         setLoggedIn(true);
         localStorage.setItem(STORE_TOKEN_NAME, res.token);  
         checkToken(res.token); 
-      }).then(history.push(MOVIES_URL))
+      })
+      .then(history.push(MOVIES_URL))
       .catch((err) => { 
         if (err === 'Ошибка 401') {
           setIsOpen(true);
