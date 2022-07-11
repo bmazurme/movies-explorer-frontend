@@ -5,6 +5,7 @@ import SignFooter from './SignFooter';
 import React from 'react';
 import { useFormWithValidation } from '../../utils/validator';
 import InfoTooltip from '../Popup/Popup';
+import { EMAIL_REGEXP } from '../../utils/constants';
 
 function Signin(props) {
   const {values, handleChange, errors, isValid} = useFormWithValidation();
@@ -23,11 +24,12 @@ function Signin(props) {
         </h2>
         <form onSubmit={handleSubmit}>
           <Inbox
+            pattern={EMAIL_REGEXP}
             onChange={handleChange}
             label={'E-mail'}
             errors={errors}
             name={'email'}
-            type={'email'}
+            type={'text'}
             id={`email-input`}
             autoComplete={`off`}
             value={values.email || ''}

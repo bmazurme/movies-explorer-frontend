@@ -22,3 +22,8 @@ export const SIGNIN_URL = '/signin';
 export const SIGNUP_URL = '/signup';
 
 export const PATHS = ['/', '/movies', '/saved-movies', '/profile-edit', '/profile'];
+
+export const SEARCH_WORD_MOVIE = 'searchWordMovie';
+export const SEARCH_WORD_SAVED_MOVIE = 'searchWordSavedMovie';
+
+export const EMAIL_REGEXP = '[a-z0-9._%+-]+@[a-z0-9.-]+[\.{0}][a-z]{2,3}$';

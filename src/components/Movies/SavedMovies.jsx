@@ -20,13 +20,19 @@ import {
   STORE_SHORT_FILM_SAVED_NAME,
   STORE_TOKEN_NAME,
   STORE_MOVIES,
-  STORE_SOURCE
+  STORE_SOURCE,
+  // SEARCH_WORD_SAVED_MOVIE,
 } from '../../utils/constants';
 
 function SavedMovies() {
   let settings = JSON.parse(localStorage.getItem(STORE_SHORT_FILM_SAVED_NAME)) 
     ? JSON.parse(localStorage.getItem(STORE_SHORT_FILM_SAVED_NAME)) 
     : false;
+
+  // let searchWordSavedMovie = JSON.parse(localStorage.getItem(SEARCH_WORD_SAVED_MOVIE)) 
+  //   ? JSON.parse(localStorage.getItem(SEARCH_WORD_SAVED_MOVIE)) 
+  //   : '';
+
   const [data, setData] = React.useState({
     searchWord: '',
     shortFilm: settings,
@@ -123,6 +129,7 @@ function SavedMovies() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // localStorage.setItem(SEARCH_WORD_SAVED_MOVIE, JSON.stringify(data.searchWord));
     setIsLoading(true);
     new Promise((resolve, reject) => {
       const result = findMovie(data, source);

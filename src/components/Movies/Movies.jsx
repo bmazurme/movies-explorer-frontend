@@ -22,16 +22,22 @@ import {
   STORE_SHORT_FILM_NAME,
   STORE_MOVIES,
   STORE_TOKEN_NAME,
-  STORE_SOURCE
+  STORE_SOURCE,
+  SEARCH_WORD_MOVIE,
 } from '../../utils/constants';
+
 
 function Movies(props) {
   const currentUser = useContext(CurrentUserContext);
   let settings = JSON.parse(localStorage.getItem(STORE_SHORT_FILM_NAME)) 
     ? JSON.parse(localStorage.getItem(STORE_SHORT_FILM_NAME)) 
     : false;
+  let searchWordMovie = JSON.parse(localStorage.getItem(SEARCH_WORD_MOVIE)) 
+    ? JSON.parse(localStorage.getItem(SEARCH_WORD_MOVIE)) 
+    : '';
+
   const [data, setData] = React.useState({
-    searchWord: '',
+    searchWord: searchWordMovie,
     shortFilm: settings,
   });
 
@@ -72,6 +78,7 @@ function Movies(props) {
 
   function handleLikeClick(props) {
     const movie = getMovie(props);
+    const moviesSource = JSON.parse(localStorage.getItem(STORE_SOURCE));
 
     if (!props.isLiked) {
       auth
@@ -88,6 +95,18 @@ function Movies(props) {
               return x;
             }});
           setMovies(arr);
+
+          const newArr = moviesSource.map(x => {
+            if (x.id === props.id) {
+              return {
+                ...x,
+                isLiked: true
+              }
+            } else {
+              return x;
+            } 
+          })
+          localStorage.setItem(STORE_SOURCE, JSON.stringify(newArr)); // сохраняем результат
           localStorage.setItem(STORE_MOVIES, JSON.stringify(arr));
         })
         .catch((err) => {
@@ -121,6 +140,8 @@ function Movies(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    localStorage.setItem(SEARCH_WORD_MOVIE, JSON.stringify(data.searchWord));
+
     setIsLoading(true);
     new Promise((resolve, reject) => {
       const result = findMovie(data, source);
@@ -163,8 +184,9 @@ function Movies(props) {
     const moviesFromStore = localStorage.getItem(STORE_MOVIES);
 
     if (moviesSource) {
-      const data = JSON.parse(moviesSource);
-      setSource(data); 
+      const mdata = JSON.parse(moviesSource);
+      setSource(mdata);
+
       let savedMovies = [];
       if (moviesFromStore) {
         savedMovies = JSON.parse(moviesFromStore);

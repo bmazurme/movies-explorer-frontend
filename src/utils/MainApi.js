@@ -50,7 +50,10 @@ export class Auth {
   
   getUser() {
     return fetch(`${this._options.baseUrl}/users/me`, {
-      headers: this._options.headers
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        }
       })
       .then(this._checkResponse);
   }
@@ -58,7 +61,10 @@ export class Auth {
   patchUser(user) {
     return fetch(`${this._options.baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._options.headers,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
       body: JSON.stringify(user)
       })
       .then(this._checkResponse);
@@ -81,14 +87,18 @@ export class Auth {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      }})
+      }
+    })
     .then(this._checkResponse);
   }
 
   postMovie(movie) {
     return fetch(`${this._options.baseUrl}/movies`, {
       method: 'POST',
-      headers: this._options.headers,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      },
       body: JSON.stringify(movie)
     })
     .then(res => this._checkResponse(res));

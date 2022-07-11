@@ -6,6 +6,7 @@ import Inbox from '../Inbox/Inbox';
 import { useFormWithValidation } from '../../utils/validator';
 import {useEffect} from 'react';
 import InfoTooltip from '../Popup/Popup';
+import { EMAIL_REGEXP } from '../../utils/constants';
 
 function ProfileEdit(props) {
   const currentUser = useContext(CurrentUserContext);
@@ -13,19 +14,18 @@ function ProfileEdit(props) {
     email: currentUser.email,
     name: currentUser.name 
   });
-
   function handleSubmit(e) {
     e.preventDefault();
     props.handleUpdateUser({
       email: values.email,
       name: values.name
-    })
+    });
   }
 
   useEffect(() => {
     values.name = currentUser.name;
     values.email = currentUser.email;
-  }, [values.name, values.email]);
+  }, []);
 
   return(
     <>
@@ -49,6 +49,7 @@ function ProfileEdit(props) {
           />
 
           <Inbox
+            pattern={EMAIL_REGEXP}
             onChange={handleChange}
             placeholder={'E-mail'}
             errors={errors}
@@ -70,9 +71,9 @@ function ProfileEdit(props) {
           />
         </form>
         <InfoTooltip 
-        isOpen={props.isOpen}
-        onClose={props.onClose}
-        text={props.text}
+          isOpen={props.isOpen}
+          onClose={props.onClose}
+          text={props.text}
       />
       </section>
     </>

@@ -5,6 +5,7 @@ import SignFooter from './SignFooter';
 import React from 'react';
 import { useFormWithValidation } from '../../utils/validator';
 import InfoTooltip from '../Popup/Popup';
+import { EMAIL_REGEXP } from '../../utils/constants';
 
 function Signup(props) {
   const {values, handleChange, errors, isValid} = useFormWithValidation();
@@ -39,10 +40,11 @@ function Signup(props) {
           <Inbox
             required={true}
             onChange={handleChange}
+            pattern={EMAIL_REGEXP}
             name={'email'}
             placeholder={'ваш e-mail в формате pochta@mail.com'}
             label={'E-mail'}
-            type={'email'}
+            type={'text'}
             id={`email-input`}
             autoComplete={`off`}
             value={values.email || ''}

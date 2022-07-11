@@ -30,7 +30,9 @@ import {
   MAIN_URL,
   SIGNIN_URL,
   SIGNUP_URL,
-  PATHS
+  PATHS,
+  SEARCH_WORD_MOVIE,
+  SEARCH_WORD_SAVED_MOVIE
 } from '../utils/constants';
 
 function App() {
@@ -137,6 +139,7 @@ function App() {
           title: '', 
           description: 'данные успешно обновлены'
         });
+        setCurrentUser(res);
         setIsOpen(true);
         setTimeout(() => {
           setIsOpen(false);
@@ -161,6 +164,8 @@ function App() {
     localStorage.removeItem(STORE_SHORT_FILM_NAME);
     localStorage.removeItem(STORE_SHORT_FILM_SAVED_NAME);
     localStorage.removeItem(STORE_SOURCE);
+    localStorage.removeItem(SEARCH_WORD_MOVIE);
+    localStorage.removeItem(SEARCH_WORD_SAVED_MOVIE);
     setLoggedIn(false);
     setCurrentUser({});
     history.push(MAIN_URL);
