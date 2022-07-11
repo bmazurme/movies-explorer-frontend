@@ -1,14 +1,16 @@
-import ProfileButton from "../ProfileButton/ProfileButton";
+import ProfileButton from '../ProfileButton/ProfileButton';
+import { NavLink } from 'react-router-dom';
+import React from 'react';
 
 function Navigation(props) {
   return(
     <>
       <div className={`navigation 
-            ${props.isOpen 
-            ? 'navigation_opened' 
-            : ''}`}>
+        ${props.isOpen 
+        ? 'navigation_opened' 
+        : ''}`}
+      >
         <ul
-          onClick={props.handlerClick} 
           className={`navigation__links 
             ${props.isOpen 
               ? 'navigation__links_opened' 
@@ -16,29 +18,33 @@ function Navigation(props) {
             }
         >
           <li>
-            <a className="navigation__link navigation__link_active navigation__link_home"
-              href="/">
+            <NavLink 
+              className={`navigation__link navigation__link_home`} 
+              to='/'>
                 Главная
-              </a>
+              </NavLink>
           </li>
           <li>
-            <a className="navigation__link navigation__link_active"
-              href="/movies">
+            <NavLink 
+              className={`navigation__link`}
+              to='/movies'>
                 Фильмы
-              </a>
+              </NavLink>
           </li>
           <li>
-            <a className="navigation__link" 
-              href="/saved-movies">
+            <NavLink 
+              className={`navigation__link`}
+              to='/saved-movies'>
                 Сохранённые фильмы
-            </a>
+            </NavLink>
           </li>
           <ProfileButton isOpen={props.isOpen}/>
         </ul>
       </div>
+
       <button 
         onClick={props.handlerClick}
-        type="click" 
+        type='click' 
         className={`button navigation__button
           ${props.isOpen 
           ? 'navigation__button_open' 

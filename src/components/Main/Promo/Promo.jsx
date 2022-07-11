@@ -1,39 +1,43 @@
-import { links } from "./links";
+import { links } from './links';
+import Header from '../../Header/Header';
+import { NavLink } from 'react-router-dom';
 
-function Promo() {
+function Promo(props) {
   return(
-    <section className="promo">
-      <div className="promo__header">
-        <a className="promo__logo" href="/">      
-          <div className="promo__icon">
+    <section className='promo'>
+      {props.loggedIn 
+        ? <Header />
+        : <>
+              <div className='promo__header'>
+        <a className='promo__logo' href='/'>      
+          <div className='promo__icon'>
           </div>
         </a>
-        <div className="promo__menu">
-          <a href="/signup" className="promo__signup">
+        <div className='promo__menu'>
+          <NavLink to='/signup' className='promo__signup'>
             Регистрация
-          </a>
-          <a href="/signin" className="promo__signin">
+          </NavLink>
+          <NavLink to='/signin' className='promo__signin'>
             Войти
-          </a>
+          </NavLink>
         </div>
       </div>
-      <div className="promo__cover">
-      <h1 className="promo__title">
-          Учебный проект студента факультета Веб-разработки.
-        </h1>
-
-        <ul className="promo__tabs">
+      <div className='promo__cover'>
+      <h1 className='promo__title'>
+        Учебный проект студента факультета Веб-разработки.
+      </h1>
+        <ul className='promo__tabs'>
           {links.map((link, index) => 
-            <li className="promo__tab" key={index}>
-              <a className="promo__link" href={link.url}>
+            <li className='promo__tab' key={index}>
+              <a className='promo__link' href={link.url}>
                 {link.name}
               </a>
             </li>
           )}
         </ul>
       </div>
-
-
+        </>
+        }
     </section>
   );
 }

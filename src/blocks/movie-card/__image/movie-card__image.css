@@ -1,8 +1,10 @@
 .movie-card__image {
   min-width: 270px;
   width: 100%;
-  min-height: 151px;
-  height: auto;
+  /* min-height: 151px; */
+  height: 190px;
+
+
   object-fit: cover;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;

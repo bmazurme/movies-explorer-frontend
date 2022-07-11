@@ -1,7 +1,12 @@
-function More() {
+function More(props) {
   return(
-    <div className="more">
-      <button type="button" className="button button_more">Еще</button>
+    <div className='more'>
+      <button
+        onClick={props.handleMoreClick}
+        type='button'
+        className='button button_more'>
+          Еще
+      </button>
     </div>
   );
 }
