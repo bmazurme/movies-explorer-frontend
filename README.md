@@ -1,5 +1,8 @@
 # movies-explorer-frontend
+
 Frontend
+
+Backend - [https://github.com/bmazurme/movies-explorer-api](https://github.com/bmazurme/movies-explorer-api)
 
 ### Установка
 Клонируйте репозиторий на компьютер:
