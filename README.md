@@ -1,4 +1,6 @@
 # Movies Explorer Project
+## movies-explorer-api
+
 Movies Explorer represents a full-stack application for searching and saving movies
 
 Implemented features:
