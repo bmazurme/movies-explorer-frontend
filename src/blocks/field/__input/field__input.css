@@ -1,0 +1,17 @@
+.field__input {
+  background-color: #F4F4F4;
+  border-color:	#F4F4F4;
+  border: 1px solid #F4F4F4;
+  border-radius: 8px;
+  max-width: 366px;
+  width: 100%;
+  height: 46px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 0;
+  padding-bottom: 0;
+}

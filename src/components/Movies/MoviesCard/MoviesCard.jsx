@@ -1,33 +1,50 @@
 import React from 'react';
-import { movieCard } from './movieCard';
+import { useLocation } from 'react-router-dom';
 
-function MovieCard() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  function handlerClick() {
-    setIsOpen(!isOpen);
+function MovieCard(props) {
+  const location = useLocation();
+
+  const movieClass = () => {
+    if (location.pathname  === '/movies') {
+      if (props.isLiked) {
+        return 'button_liked button_disabled'
+      } 
+      return 'button_like';
+    }
   }
+  const savedMovieClass = () => {
+    if (location.pathname  === '/saved-movies') {
+      if (props.isLiked) {
+        return 'button_dislike '
+      } 
+      return '';
+    }
+  }
+
   return(
-    <div className="movie-card">
-      <img
-        src={movieCard.cover}
-        alt={movieCard.alt} 
-        className="movie-card__image"
-      />
-      <div className="movie-card__box">
-        <p className="movie-card__title">
-          {movieCard.title}
+    <div className='movie-card'>
+      <a href={props.trailerLink} target='_blank' rel='noreferrer'>
+        <img
+          src={`${props.image.url 
+            ? `https://api.nomoreparties.co${props.image.url}` 
+            : props.thumbnail }`}
+          alt={props.image.alternativeText} 
+          className='movie-card__image'
+        />
+      </a>
+      <div className='movie-card__box'>
+        <p className='movie-card__title'>
+          {props.nameRU}
         </p>
         <button
-          className={`button
-            ${isOpen 
-              ? 'button_liked' 
-              : 'button_like'
-            }`
+          disabled={props.isLiked && location.pathname === '/movies'}
+          className={`button ${movieClass() ? movieClass() : ''} 
+                             ${savedMovieClass() ? savedMovieClass() : ''}`
           }
-          onClick={handlerClick}/>
+          onClick={() => props.handleLikeClick(props)}/>
       </div>      
-      <p className="movie-card__detail">
-        {movieCard.detail}
+      <p className='movie-card__detail'>
+        {props.duration}
       </p>
     </div>
   );

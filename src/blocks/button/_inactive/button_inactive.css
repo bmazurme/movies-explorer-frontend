@@ -1,0 +1,8 @@
+.button_inactive {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.button_inactive:hover {
+  opacity: 0.4;
+}
