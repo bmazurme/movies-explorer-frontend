@@ -9,8 +9,7 @@
   height: 50px;
   animation: spin 2s linear infinite;
   padding: 0;
-  margin: 0 auto;
-  margin-bottom: 30px;
+  margin: 0 auto 30px;
   grid-column: 1/-1;
 }
 

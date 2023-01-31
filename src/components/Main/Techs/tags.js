@@ -1,1 +1,0 @@
-export const tags =['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'MongoDB'];

@@ -94,15 +94,6 @@
 @import url(./blocks/field/__label/field__label.css);
 @import url(./blocks/field/__value/field__value.css);
 @import url(./blocks/field/__input/field__input.css);
-/* techs */
-@import url(./blocks/techs/techs.css);
-@import url(./blocks/techs/__title/techs__title.css);
-@import url(./blocks/techs/__description/techs__description.css);
-@import url(./blocks/techs/__list/techs__list.css);
-@import url(./blocks/techs/__item/techs.css);
-/* about-project */
-@import url(./blocks/about-project/about-project.css);
-@import url(./blocks/about-project/__progressbar/about-project__progressbar.css);
 /* block */
 @import url(./blocks/block/block.css);
 /* progressbar */
@@ -126,24 +117,6 @@
 @import url(./blocks/promo/__signin/promo__signin.css);
 @import url(./blocks/promo/__signup/promo__signup.css);
 @import url(./blocks/promo/__cover/promo__cover.css);
-/* about-me */
-@import url(./blocks/about-me/about-me.css);
-/* @import url(./blocks/about-me/__tag/about-me__tag.css); */
-@import url(./blocks/about-me/__title/about-me__title.css);
-@import url(./blocks/about-me/__container/about-me__container.css);
-@import url(./blocks/about-me/__major/about-me__major.css);
-@import url(./blocks/about-me/__text/about-me__text.css);
-@import url(./blocks/about-me/__photo/about-me__photo.css);
-@import url(./blocks/about-me/__links/about-me__links.css);
-@import url(./blocks/about-me/__link/about-me__link.css);
-/* portfolio */
-@import url(./blocks/portfolio/portfolio.css);
-@import url(./blocks/portfolio/__title/portfolio__title.css);
-@import url(./blocks/portfolio/__list/portfolio__list.css);
-@import url(./blocks/portfolio/__item/portfolio__item.css);
-@import url(./blocks/portfolio/__link/portfolio__link.css);
-/* tag */
-@import url(./blocks/tag/tag.css);
 /* not-found */
 @import url(./blocks/not-found/not-found.css);
 @import url(./blocks/not-found/__title/not-found__title.css);
