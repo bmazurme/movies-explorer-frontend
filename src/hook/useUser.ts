@@ -6,5 +6,6 @@ const userSelector = makeDataSelector('user');
 
 export default function useUser() {
   const { data } = useSelector(userSelector);
+
   return data;
 }

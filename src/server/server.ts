@@ -23,7 +23,7 @@ const {
   PORT = 3000,
   // PTH = 'mongodb://localhost:27017/moviesdb'.
 } = process.env;
-//   'https://api.nomoreparties.co',
+
 const helmetConfig = {
   useDefaults: true,
   directives: {

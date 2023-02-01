@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
 
 const axiosInstance: AxiosInstance = axios.create({
-  withCredentials: true,
+  withCredentials: false,
   // @ts-ignore
   'Access-Control-Allow-Credentials': true,
 });

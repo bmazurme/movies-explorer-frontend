@@ -35,6 +35,7 @@
 @import url(./blocks/inbox/inbox.css);
 @import url(./blocks/inbox/__input/inbox__input.css);
 @import url(./blocks/inbox/__input/_error/inbox__input_error.css);
+@import url(./blocks/inbox/__input/_error-help/inbox__input_error-help.css);
 @import url(./blocks/inbox/__label/inbox__label.css);
 @import url(./blocks/inbox/__label/_error/inbox__input_error.css);
 /* profile */
@@ -50,7 +51,7 @@
 @import url(./blocks/search-form/__button/search-form__button.css);
 @import url(./blocks/search-form/__box/search-form__box.css);
 @import url(./blocks/search-form/__form/search-form__form.css);
-/* profile */
+/* profile-button */
 @import url(./blocks/profile-button/profile-button.css);
 @import url(./blocks/profile-button/_opened/profile-button_opened.css);
 @import url(./blocks/profile-button/profile-button__icon/profile-button__icon.css);

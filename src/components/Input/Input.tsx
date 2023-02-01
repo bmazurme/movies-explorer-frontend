@@ -37,11 +37,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         type={type}
         value={value}
         placeholder={placeholder}
-        className={className}
+        className={`${className}${errorText ? ' inbox__input_error' : ''}`}
       />
       {
         errorText
-        && <span className={`${label}-input-error text-field__input-error text-field__input-error_help`}>{ errorText }</span>
+        && <span className={`${label}-input-error inbox__input_error-help`}>{ errorText }</span>
       }
     </div>
   );

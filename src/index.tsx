@@ -4,13 +4,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
 
+import ErrorBoundaryWrapper from './components/ErrorBoundaryWrapper';
+
 import MoviesPage from './pages/Movies';
 import SigninPage from './pages/SignIn';
 import SignupPage from './pages/Signup';
 import ProfilePage from './pages/Profile';
 import ProfileEditPage from './pages/ProfileEdit';
 import NotFoundPage from './pages/NotFound';
-import ErrorBoundaryWrapper from './components/ErrorBoundaryWrapper';
 
 import { Paths } from './utils/constants';
 import './index.css';

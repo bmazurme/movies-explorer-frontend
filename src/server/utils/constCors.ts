@@ -3,6 +3,7 @@ const WHITE_LIST = [
   'http://localhost:3001',
   'http://localhost:3000',
   'https://api.nomoreparties.co',
+  'https://api.nomoreparties.co/beatfilm-movies',
   // 'https://joinus.nomoredomains.xyz',
   // 'https://api.joinus.nomoredomains.xyz',
 ];

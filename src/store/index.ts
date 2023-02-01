@@ -4,13 +4,14 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
-import { authApi, usersApi } from './api';
+import { authApi, usersApi, moviesApi } from './api';
 import userReducer from './slices/userSlice';
 import { isServer } from '../utils';
 import movieStatsReducer from './slices/movieStatsSlice';
 
 export * from './api/authApi/endpoints';
 export * from './api/usersApi/endpoints';
+export * from './api/moviesApi/endpoints';
 export * from './slices';
 
 // global redeclared types
@@ -32,6 +33,7 @@ export const store = configureStore({
     movieStats: movieStatsReducer,
     [authApi.reducerPath]: authApi.reducer,
     [usersApi.reducerPath]: usersApi.reducer,
+    [moviesApi.reducerPath]: moviesApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
@@ -39,6 +41,7 @@ export const store = configureStore({
     .concat(
       authApi.middleware,
       usersApi.middleware,
+      moviesApi.middleware,
       routerMiddleware,
     ),
 });

@@ -3,7 +3,7 @@ Frontend
 
 ## Demo
 
-[Deploy Yandex Cloud](https://joinus.nomoredomains.xyz/)
+[//]: # ([Deploy Yandex Cloud]&#40;https://joinus.nomoredomains.xyz/&#41;)
 
 ![Alt-текст](https://github.com/bmazurme/movies-explorer-frontend/blob/main/src/images/cover.png "demo")
 
@@ -36,14 +36,15 @@ Launch: `npm start`
 ![Webpack](https://img.shields.io/badge/-Webpack-black?style=flat-square&logo=webpack)
 ![Nodejs](https://img.shields.io/badge/-Nodejs-black?style=flat-square&logo=Node.js)
 
-
 Implemented features:
 - [X] Form Validation, react-hook-form
-- [X] Redux, RTK Query
+- [X] Redux, RTK Query, local storage
 - [X] Axios
 - [X] React error boundaries
 - [X] TypeScript, Webpack
 - [X] Express
+- [ ] Likes
+- [ ] Dark theme
 - [ ] Docker
 - [ ] Service worker
 - [ ] Tests

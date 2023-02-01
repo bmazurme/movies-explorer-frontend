@@ -1,6 +1,10 @@
 import { MOVIE_URL, DEFAULT_IMG } from '../utils/constants';
+import { MovieCardType } from '../components/MoviesCard';
 
-export default function getMovie(props: any) {
+type inDateType = MovieCardType
+  & {image: Record<string, Record<string, Record<string, string>>>};
+
+export default function getMovie(props: inDateType) {
   const movie = {
     country: props.country || 'нет',
     director: props.director || 'нет',
@@ -16,5 +20,6 @@ export default function getMovie(props: any) {
     nameRU: props.nameRU || 'нет',
     nameEN: props.nameEN || 'нет',
   };
+
   return movie;
 }

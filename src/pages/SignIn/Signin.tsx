@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import Logo from '../../components/Logo';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import SignFooter from '../../components/SignFooter';
+import InfoTooltip from '../../components/Popup';
 
 type FormPayload = {
   login: string;
@@ -45,6 +46,15 @@ export default function Signin() {
   const userData = useUser();
   const errorHandler = useErrorHandler();
   const [signIn] = useSignInMutation();
+  const [isOpen, setIsOpen] = useState(false);
+  const text = {
+    title: 'Произошла ошибка',
+    description: 'Проверьте пароль и логин',
+  };
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     if (userData) {
@@ -61,8 +71,14 @@ export default function Signin() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await signIn(data);
-      navigate('/');
+      const result: unknown = await signIn(data);
+
+      if ((result as Record<string, Record<string, string>>)?.error?.message === 'Unauthorized error') {
+        setIsOpen(true);
+        setTimeout(() => onClose(), 3000);
+      } else {
+        navigate('/');
+      }
     } catch ({ status, data: { reason } }) {
       errorHandler(new Error(`${status}: ${reason}`));
     }
@@ -72,7 +88,7 @@ export default function Signin() {
     <section className="sign">
       <div className="container">
         <Logo />
-        <h2 className="sign__title"> Рады видеть!</h2>
+        <h2 className="sign__title">Рады видеть!</h2>
         <form onSubmit={onSubmit}>
           {inputs.map((input) => (
             <Controller
@@ -100,7 +116,7 @@ export default function Signin() {
           link={{ url: '/signup', label: 'Регистрация' }}
         />
       </div>
-      {/* <InfoTooltip isOpen={isOpen} onClose={onClose} text={text} /> */}
+      <InfoTooltip isOpen={isOpen} onClose={onClose} text={text} />
     </section>
   );
 }
