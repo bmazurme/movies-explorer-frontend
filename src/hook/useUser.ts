@@ -1,8 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import makeDataSelector from '../store/makeDataSelector';
-
-const userSelector = makeDataSelector('user');
+import { userSelector } from '../store/selectors';
 
 export default function useUser() {
   const { data } = useSelector(userSelector);

@@ -1,5 +1,4 @@
 import { MOVIE_URL, DEFAULT_IMG } from '../utils/constants';
-import { MovieCardType } from '../components/MoviesCard';
 
 type inDateType = MovieCardType
   & {image: Record<string, Record<string, Record<string, string>>>};

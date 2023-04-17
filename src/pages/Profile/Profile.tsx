@@ -8,6 +8,7 @@ import { Paths } from '../../utils/constants';
 
 export default function Profile() {
   const userData = useUser();
+
   return (
     <Content>
       <div className="container">

@@ -15,3 +15,18 @@ type User = {
   avatar?: string;
   password?: string;
 };
+
+type MovieCardType = {
+  isLiked?: boolean;
+  trailerLink: string;
+  image: Record<string, string>;
+  duration: number;
+  nameRU: string;
+  nameEN: string;
+  thumbnail: string;
+  description: string;
+  director: string;
+  country: string;
+  year: number;
+  id: number;
+}

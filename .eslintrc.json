@@ -57,6 +57,10 @@
               "ts": "never"
             }
           ]
+    },
+    "globals": {
+        "User": "readonly",
+        "MovieCardType": "readonly"
     }
     
     // "import/extensions": ["never"]

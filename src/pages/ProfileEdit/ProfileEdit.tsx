@@ -1,8 +1,8 @@
 import React from 'react';
 import { useErrorHandler } from 'react-error-boundary';
-
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigate, NavLink } from 'react-router-dom';
+
 import useUser from '../../hook/useUser';
 import { useUpdateUserMutation } from '../../store';
 
@@ -60,6 +60,7 @@ export default function ProfileEdit() {
       errorHandler(new Error(`${status}: ${reason}`));
     }
   });
+
   return (
     <Content>
       <div className="container">

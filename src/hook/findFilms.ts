@@ -1,5 +1,3 @@
-import { MovieCardType } from '../components/MoviesCard';
-
 const checkValue = (field: string, searchString: string) => (field
   ? field.toLowerCase().includes(searchString) : false);
 

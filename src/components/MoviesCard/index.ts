@@ -1,4 +1,3 @@
-import MovieCard, { MovieCardType } from './MoviesCard';
+import MovieCard from './MoviesCard';
 
 export default MovieCard;
-export { MovieCardType };

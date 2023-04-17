@@ -1,7 +1,8 @@
-import { MovieCardType } from '../components/MoviesCard';
-
-// eslint-disable-next-line max-len
-export default function combineMovies(moviesDTO: MovieCardType[], myMoviesDTO: MovieCardType & { _id: number, movieId: number }[]) {
+export default function combineMovies(
+  moviesDTO: MovieCardType[],
+  myMoviesDTO: MovieCardType & { _id: number,
+    movieId: number }[],
+) {
   return moviesDTO.map((movie: MovieCardType) => ({
     ...movie,
     isLiked: myMoviesDTO.some((x) => x.movieId === movie.id),

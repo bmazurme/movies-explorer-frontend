@@ -3,24 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { store } from '../../store';
-import makeDataSelector from '../../store/makeDataSelector';
-
-export type MovieCardType = {
-  isLiked?: boolean;
-  trailerLink: string;
-  image: Record<string, string>;
-  duration: number;
-  nameRU: string;
-  nameEN: string;
-  thumbnail: string;
-  description: string;
-  director: string;
-  country: string;
-  year: number;
-  id: number;
-}
-
-const statsSelector = makeDataSelector('movieStats');
+import { statsSelector } from '../../store/selectors';
 
 export default function MovieCard(props: MovieCardType) {
   const { movies, source } = useSelector(statsSelector);

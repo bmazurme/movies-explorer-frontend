@@ -1,5 +1,4 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { MovieCardType } from '../../components/MoviesCard';
 
 type MovieStatsState = {
   short: boolean;

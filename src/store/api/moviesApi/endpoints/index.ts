@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable import/prefer-default-export */
 import moviesApi from '..';
 

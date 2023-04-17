@@ -5,7 +5,6 @@ import SearchForm from '../../components/SearchForm';
 import MovieCardList from '../../components/MoviesCardList';
 import More from '../../components/More';
 import NotFound from '../../components/NotFound';
-import { MovieCardType } from '../../components/MoviesCard';
 import { useWindowDimensions, getVisualProps } from '../../hook/getWindowDimensions';
 import { useGetMoviesMutation, store } from '../../store';
 import findMovie from '../../hook/findFilms';

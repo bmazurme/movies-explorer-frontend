@@ -11,6 +11,7 @@ export default function Navigation({ isOpen, handlerClick }
   const logOut = async () => {
     await signOut();
   };
+
   return (
     <>
       <div className={`navigation${isOpen ? ' navigation_opened' : ''}`}>

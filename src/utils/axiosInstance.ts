@@ -30,5 +30,6 @@ axiosInstance.interceptors.response.use(
 
 export default function getAxiosInstance(baseURL = '/') {
   axiosInstance.defaults.baseURL = baseURL;
+
   return axiosInstance;
 }

@@ -7,6 +7,7 @@ export default function Switcher({ handlerSwitchClick }:
     setShortFilm(!shortFilm);
     handlerSwitchClick();
   };
+
   return (
     <button
       type="button"

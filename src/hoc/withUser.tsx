@@ -37,11 +37,13 @@ export default function withUser<P extends Record<string, unknown>>(
     if (userData || !shouldBeAuthorized) {
       const pagePropsWithUser = { ...pageProps, user: userData };
       pagePropsWithUser.user = userData;
+
       return <Page {...pagePropsWithUser} />;
     }
 
     if (isError && (error as AxiosError).response?.status !== 401 && !shouldBeAuthorized) {
       handleErrors(error);
+
       return <div>Something went wrong</div>;
     }
 
