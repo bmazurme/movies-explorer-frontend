@@ -3,9 +3,7 @@ Frontend
 
 ## Demo
 
-[//]: # ([Deploy Yandex Cloud]&#40;https://joinus.nomoredomains.xyz/&#41;)
-
-![Alt-текст](https://github.com/bmazurme/movies-explorer-frontend/blob/main/src/images/cover.png "demo")
+![Alt-текст](https://github.com/bmazurme/movies-explorer-frontend/blob/main/src/images/cover-movie.png "demo")
 
 ### Installation
 Clone the repository on your computer:
