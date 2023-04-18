@@ -3,6 +3,8 @@ Frontend
 
 ## Demo
 
+[![Netlify](https://img.shields.io/badge/-Netlify-black?style=flat-square&logo=netlify)](https://graceful-cassata-eff5c3.netlify.app/)
+
 ![Alt-текст](https://github.com/bmazurme/movies-explorer-frontend/blob/main/src/images/cover-movie.png "demo")
 
 ### Installation
@@ -22,7 +24,7 @@ Run eslint: `npm run eslint`
 
 Launch: `npm start`
 
-### Стек технологий
+### Tech Stack
 ![React](https://img.shields.io/badge/-React-black?style=flat-square&logo=react)
 ![Redux](https://img.shields.io/badge/-Redux-black?style=flat-square&logo=redux)
 ![TypeScript](https://img.shields.io/badge/-TypeScript-black?style=flat-square&logo=typescript)
